@@ -1,0 +1,49 @@
+/*Ejercicio 13
+
+Buscador de nombres: Crea una función que reciba por parámetro un array y el valor que desea comprobar que existe dentro de dicho array. Esta función comprueba si existe el elemento, y en caso de que exista nos devuelve un true y la posición de dicho elemento y por la contra un false.
+Puedes usar este array para probar tu función: */
+
+const names = [
+  'Peter',
+  'Steve',
+  'Tony',
+  'Natasha',
+  'Clint',
+  'Logan',
+  'Xabier',
+  'Bruce',
+  'Peggy',
+  'Jessica',
+  'Marc'
+]; 
+function nameFinder(nameList, nameToFind) { /* Aquí metemos la lista(nameLIst) y el nombre a buscar(nameToFind) */
+   /* Usaremos un bucle for "normal" para tener acceso a la i(indice, la posición ) ya que nos la piden en el enunciado con el for of de antes lo recorremos mas facil pero no nos da acceso a este */
+  for(let i=0; i < nameList.length;i++){ /* Como le he puesto un menor a secas( sin el igual) no necesitamos restarle 1 a length ya que así se nos para también justo en el último elemento, si ponemos <= hay que restarle porwque si no nos entraria en una posición inexistente y nos daría undefinded*/
+    if(nameList[i] === nameToFind) { /* Comparamos el elemento de esta vuelta con el nombre que buscamos, con (nameList)[i] sig que nos trae el valor exacto que esta guardado en la posición i dentro de la lista nameList, que es la que contiene el array entero*/
+      return[true,i];
+    } /* Si lo encontramos, devolvemos true y la posición(i), además al hacer el return la función se detiene al momento//
+    /*no ponemos un  else aqui dejamos mque siga buscando porque si no una de dos, o nos imprime false mientras esta reocrriendo el bucle o nos puede imprimir un falso falso tan solo recorriendo un elemento y deteniendo el bucle*/  
+  }
+  return false; /* Si el bucle termina de dar todas las vueltas y llega hasta quí abajo, significa que no ha encontrado el nombre a buscar(nameToFind)y ahi nos devuelve un false*/
+
+}
+
+console.log(nameFinder(names,'Peggy')); // Resultado: [true, 8] lo encuentra y está en la posición 8
+console.log(nameFinder(names,'Batman'));// Resultado: false No está
+
+/* También podemos plantearlo con los métodos .includes() para devolvernos el true o false y el .indexOf() para darnos la posición exacta que nos piden */
+
+function nameFinder2(nameList2,nameToFind2){
+
+  if (nameList2.includes(nameToFind2)){ /*Si el la lista encontramoe el nombre que buscamos, decvuelve True y busco su posicion con indexOf */
+
+    return[true, nameList2.indexOf(nameToFind2)]
+  
+  } else {
+    return false; // si no está includo, nos devuelve false
+  }
+
+}
+
+console.log(nameFinder2(names,'Tony')); // Resultado [true,2]
+console.log(nameFinder2(names,'Batman'));// Resultado: false No está

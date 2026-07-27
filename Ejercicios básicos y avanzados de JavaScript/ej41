@@ -1,0 +1,59 @@
+/*Ejercicio 41
+Crea una función llamada rollDice() que reciba como parámetro el numero de caras que queramos que tenga el dado que deberá simular el codigo dentro de la función.
+Que la función use el parametro para simular una tirada de dado y retornar el resultado.
+Si no se te ocurre como hacer un numero aleatorio no te preocupes. Busca información sobre la función de JavaScript Math.random() */
+
+function rollDice(caras) { /* aqui el parametro sería las caras que le diremos qeu tiene el dado*/
+  if (caras <= 1) {
+    return "Un dado debe tener al menos 2 caras"; /* le metemos un condicional para no poder meter el valor uno o negativos como caras del dado, ya que no tienen sentido*/
+    }
+    const tirada = Math.floor(Math.random() * caras) + 1 /* Math.random() nos genera un decimal entre 0 y 0.999 , tras aplicar esto lo multiplicamos por el número de caras(6 ejem) nos dará un num entre 0 y 5.99999
+Math.floor() este método nos quita los decimales(los recorta sin más) nos dejará un resultado de entre 0 a 5, tras esto le sumamos un 1 para que el resultado nos quede entre 1 y 6*/
+
+    return tirada; /* con esto cogemos el numero que nos haya dado en la función y lo tiramos fuera de la función  para poder imprimirlo o usarlo para lo que queramos, señalar que aqui no necesitamos meterle un else al condicional porque con el return la funcion se acaba al momento y así queda mas sencillo*/
+
+}
+
+//PRUEBAS FUNCIONAMIENTO 
+
+// tiramos un dado estandar  (6 caras)
+console.log(`1º Tirada dado de 6 caras:`, rollDice(6)); 
+console.log(`2º Tirada dado de 6 caras:`, rollDice(6)); 
+console.log(`3º Tirada dado de 6 caras:`, rollDice(6)); 
+console.log(`4º Tirada dado de 6 caras:`, rollDice(6));
+
+// tiramos un dodecaedro(12 caras)
+console.log(`1º Tirada dado de 12 caras:`, rollDice(12)); 
+console.log(`2º Tirada dado de 12 caras:`, rollDice(12)); 
+console.log(`3º Tirada dado de 12 caras:`, rollDice(12)); 
+console.log(`4º Tirada dado de 12 caras:`, rollDice(12)); 
+// tiramos un icosaedro (20 caras)
+console.log(`1º Tirada dado de 20 caras:`, rollDice(20)); 
+console.log(`2º Tirada dado de 20 caras:`, rollDice(20)); 
+console.log(`3º Tirada dado de 20 caras:`, rollDice(20)); 
+console.log(`4º Tirada dado de 20 caras:`, rollDice(20));
+
+// Tiramos una moneda (cara o cruz = 2 caras)
+console.log(`1º Tirada de moneda (1 o 2):`, rollDice(2));
+console.log(`2º Tirada de moneda (1 o 2):`, rollDice(2));
+console.log(`3º Tirada de moneda (1 o 2):`, rollDice(2));
+console.log(`4º Tirada de moneda (1 o 2):`, rollDice(2));
+
+// Usamos el caso imposible dado de 1 cara
+
+console.log(`1º Tirada de dado de 1 cara (imposible):`, rollDice(1));
+console.log(`2º Tirada de dado de 1 cara (imposible):`, rollDice(1));
+console.log(`3º Tirada de dado de 1 cara (imposible):`, rollDice(1));
+console.log(`4º Tirada de dado de 1 cara (imposible)`, rollDice(1));
+
+
+
+
+// Usamos el caso imposible dado de -2 cara
+
+console.log(`1º Tirada de dado de -2 cara (imposible):`, rollDice(-2));
+console.log(`2º Tirada de dado de -2 cara (imposible):`, rollDice(-2));
+console.log(`3º Tirada de dado de -2 cara (imposible):`, rollDice(-2));
+console.log(`4º Tirada de dado de -2 cara (imposible)`, rollDice(-2));
+
+/* comprobado que dan resultados aleatorios y dentro del rango esperado*/

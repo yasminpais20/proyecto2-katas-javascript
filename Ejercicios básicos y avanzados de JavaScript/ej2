@@ -1,0 +1,80 @@
+/*Ejercicio 2
+
+1. Luke Skywalker cumple años:
+
+Modifica el siguiente código JavaScript para actualizar la edad de Luke Skywalker a 25 años.*/
+
+const jedi = {nombre: "Luke Skywalker", edad: 19}; //es un objeto
+
+/*const jedi = {
+ nombre: "Luke Skywalker", 
+ edad: 19};*/
+
+//2.1 
+/*Accedemos a la propiedad y le asignamos un nuevo valor, aunque el objeto está declarado con const, que significa que la variable no puede reasignarse a otra cosa distinta, esta no congela el contenido del objeto, lo que la variable guarda no es el objeto en sí, sino una referencia (dirección en memoria) a él, mientras no cambiemos esa referencia, podemos modificar las propiedades dentro del objeto que queramos, la caja no puede cambiar, el contenido de la misma si */
+
+jedi.edad = 25 ; //jedi["edad"] = 25 también vale 
+
+console.log(jedi) // Imprimimos ahora jedi con el valor modificado
+
+
+/*2.2 Presentación al estilo Leia Organa:
+
+Crea tres variables con la siguiente información:
+
+nombre: "Leia"
+apellido: "Organa"
+edad: 20
+Muestra un mensaje por consola que siga la siguiente estructura:"Soy Leia Organa, tengo 20 años y soy una princesa de Alderaan."
+Utiliza la concatenación para ello. */
+
+//2.2 Creamos las 3 variables y concatenamos
+
+let nombre = "Leia";
+let apellido = "Organa";
+let edad = 20;
+
+console.log("Soy "+ nombre  +" " + apellido + ", tengo " + edad + " años y soy la princesa de Alderaan") // Ojo con los espacios 
+
+//Ahora como alternativa lo hacemos con las comillas francesas o backticks
+
+console.log (`Soy ${nombre} ${apellido}, tengo ${edad} años y soy la princesa de Alderaan`)
+
+/*2.3. Calculando el coste total de sables de luz:
+Obtén el precio total de dos sables de luz: "Shoto de Yoda" y "sable de Darth Vader".Imprime el resultado por consola utilizando console.log. */
+
+const sable1 = {nombre: "Shoto de Yoda", precio: 1500}; //objeto.propiedad para leer el valor de un objeto
+const sable2 = {nombre: "Sable de Darth Vader", precio: 2000};
+
+// 2.3
+//Guardamos la suma en una variable
+let precioTotal = sable1.precio + sable2.precio;
+
+//Sacamos el resultado
+console.log(`El precio total de los sables es de ${precioTotal} créditos galácticos.`);
+
+//Sacando el resultado del tirón 
+console.log(sable1.precio+ sable2.precio);
+
+/*2.4. Actualizando el precio final de las naves:
+Modifica el valor de la variable global precioBaseGlobal a 25.000 créditos.Actualiza el precio final (precioFinal) de dos naves ("Ala-X" y "Halcón Milenario") sumando el valor de precioBaseGlobal a su precio base (precioBase).*/
+
+let precioBaseGlobal = 10000;
+
+// Cambia el precio base en esta linea modificando la variable
+
+precioBaseGlobal = 25000;
+
+console.log(`El precio base global es de ${precioBaseGlobal} créditos galácticos`);
+
+const nave1 = {nombre: "Ala-X", precioBase: 50000, precioFinal: 60000};
+const nave2 = {nombre: "Halcón Milenario", precioBase: 70000, precioFinal: 80000};
+
+// Tu código para actualizar el precio final de cada nave aquí...
+
+nave1.precioFinal = nave1.precioBase + precioBaseGlobal; /* Actualizamos el precio final de cada nave, le sumamos a precio Base el precio su precio global en las dos naves y lo metemos de nuevo en el objeto sustituyendo el valor */
+
+nave2.precioFinal = nave2.precioBase + precioBaseGlobal; /* En esta asignación la propiedad de la derecha se lee y la de la izquierda se escribe*/
+
+console.log(nave1)
+console.log(nave2)

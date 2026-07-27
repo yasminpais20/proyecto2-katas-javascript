@@ -1,0 +1,45 @@
+/*Ejercicio 22
+
+Usa un for para remplazar todas las comidas que no sean veganas con las frutas del array de frutas.
+Recuerda no usar frutas duplicadas.
+Finalmente, imprime el array resultante.
+*/
+const fruits = ["Strawberry", "Banana", "Orange", "Apple"];
+
+const foodSchedule = [
+  { name: "Heura", isVegan: true },
+  { name: "Salmon", isVegan: false },
+  { name: "Tofu", isVegan: true },
+  { name: "Burger", isVegan: false },
+  { name: "Rice", isVegan: true },
+  { name: "Pasta", isVegan: true },
+];
+
+
+/* Creamos un contador aparte para las frutas inicializado a 0*/
+
+let fruitList = 0; /* lo creamos con el let porque como vamos a ir cogiendo elementos de el conforme haya cosas no veganas este va a ir cambiando*/
+
+  for (let i=0; i< foodSchedule.length;i++){ /* Con este bucle recorremos el menu */
+    if(foodSchedule[i].isVegan ===false){ // comprobamos si la comida de esa vuelta noi es vegana
+      
+        foodSchedule[i].name = fruits[fruitList] // Si se cumple la condicion que se no es vegana la cambiamos por una fruta
+      
+        foodSchedule[i].isVegan = true; // Como es fruta le actualizamos la etiquea a vegana
+
+        fruitList++; /* le sumamos uno a fruitList que estamos usando de contador, para que en otra vualta coja otra fruta, ya que en el enunciado nos dicen que no usemos frutas duplicadas */
+
+    }
+
+    }
+
+    console.log(foodSchedule);
+  /* Nos da: todo ok
+    [
+  { name: 'Heura', isVegan: true },
+  { name: 'Strawberry', isVegan: true },
+  { name: 'Tofu', isVegan: true },
+  { name: 'Banana', isVegan: true },
+  { name: 'Rice', isVegan: true },
+  { name: 'Pasta', isVegan: true }
+]  */

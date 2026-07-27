@@ -1,0 +1,44 @@
+/*Ejercicio 15
+
+Includes: Haz un bucle y muestra por consola todos aquellos valores del array que incluyan la palabra "Camiseta".
+Usa la función .includes de javascript.()
+ */
+const products = [
+  "Camiseta de Metallica",
+  "Pantalón vaquero",
+  "Gorra de beisbol",
+  "Camiseta de Basket",
+  "Cinturón de Orión",
+  "AC/DC Camiseta",
+];
+ 
+
+function contieneCamiseta(lista){
+    const listaCamisetas=[];                                  
+
+    for(const elemento of lista){
+       if (elemento.includes("Camiseta")){         /* if (listaCamisetas.includes("Camiseta")) antes lo hice así, esto no sería correcto ya que estoy preguntando al elemento que está vacio que acabo de crear si incluye la palabra camiseta, esto siempre será false nunca entrará el if y nunca se guarda nada, ojo con eso */
+        listaCamisetas.push(elemento);     /* lo que tenemos que hacer realmente es mirar la etiqueta de lo que tenemos en ese momento en la vuelta del bucle(elemento) y preguntar si esta incluye camiseta*/ 
+        /* si está incluida la metemos en la nueva lista con el .push si no continua con el bucle sin más*/
+       }
+    }
+
+    console.log(listaCamisetas);
+
+}
+contieneCamiseta(products);  // nos da[ 'Camiseta de Metallica', 'Camiseta de Basket', 'AC/DC Camiseta' ]
+
+
+// Yo cree un array pero realmente el enunciado solo dice que las imprima asi que en teoría sería así
+
+function contieneCamiseta2(lista2) {
+  
+  for (const elemento2 of lista2) {
+    if (elemento2.includes("Camiseta")) {
+      console.log(elemento2); // lo imprime del tirón una vez lo encuentra
+    }
+  }
+  
+}
+
+contieneCamiseta2(products);  /* Nos iria mostrando Camiseta de Metallica Camiseta de Basket AC/DC Camiseta no usé el return porque en este caso en enunciado pide tal cual que las imprima, así que no tendria mucho sentido aquí */

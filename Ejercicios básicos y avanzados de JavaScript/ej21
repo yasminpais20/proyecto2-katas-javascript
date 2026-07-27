@@ -1,0 +1,52 @@
+/*Ejercicio 21
+
+Usa un bucle y dos condiciones para imprimir por consola el nombre de los usuarios que sean menor de edad precedidos del texto "Usuarios menores de edad:" y otro que imprima a los usuarios mayores de edad, precedido del texto "Usuarios mayores de edad:".
+*/
+const users = [
+  { name: "Tony", years: 43 },
+  { name: "Peter", years: 18 },
+  { name: "Natasha", years: 14 },
+  { name: "Bruce", years: 32 },
+  { name: "Khamala", years: 16 },
+];
+
+// Creamos dos arrays acumuladores vacios, para irles metiendo por un lado los menores y por el otro los mayores*/
+
+const menores = [];
+const mayores = [];
+
+for (const user of users){ /* usamos el bucle for of para recorrer los usuarios ya que la i nos da igual en este caso y así es más sencillo, ya que solo queremos recorrerlo entero*/
+    if(user.years < 18){   /* Planteamos en primer lugar un condicional para los menores <18 que si lo cumplen con el push se pone su nombre de usuario al final de la lista que creamos al principio de menores*/
+       menores.push(user.name);
+
+    }else if (user.years >= 18){ /* este hacve lo mismo pero para los mayores de 18 y en este caso para la lista mayores*/
+
+       mayores.push(user.name);
+
+    }
+
+
+}
+
+// Ahoras imprimimos las dos listas con dos console.log
+
+
+console.log("Usuarios menores de edad:", menores);
+
+console.log("Usuarios mayores de edad:", mayores);
+
+/* Imprime
+
+Usuarios menores de edad: [ 'Natasha', 'Khamala' ]
+Usuarios mayores de edad: [ 'Tony', 'Peter', 'Bruce' ] Esta ok */ 
+
+
+/* También se podria hacer así pero aqui no te los agrupa realmente solo te va diciendo si es mayor o menor de edad */
+for (const user of users) {
+  
+  if (user.years < 18) {
+    console.log(`Usuarios menores de edad: ${user.name}`);
+  } else if (user.years >= 18) {
+    console.log(`Usuarios mayores de edad: ${user.name}`);
+  }
+}

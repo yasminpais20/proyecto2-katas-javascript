@@ -1,0 +1,84 @@
+/* Ejercicio 24 Utiliza un bucle para filtrar personajes de Star Wars por la especie "Human" y guárdalos en un nuevo array llamado humanCharacters.
+Imprime este nuevo array por consola.*/
+
+
+const characters = [
+  { name: 'Luke Skywalker', species: 'Human' },
+  { name: 'Darth Vader', species: 'Human' },
+  { name: 'Chewbacca', species: 'Wookiee' },
+  { name: 'Leia Organa', species: 'Human' },
+  { name: 'R2-D2', species: 'Droid' },
+  { name: 'C-3PO', species: 'Droid' },
+  { name: 'Obi-Wan Kenobi', species: 'Human' },
+  { name: 'Yoda', species: 'Unknown' },
+  { name: 'Han Solo', species: 'Human' }
+];
+const humanCharacters = [];
+
+for (const character of characters){
+    
+    if (character.species.includes('Human')){ /* Ojo aquí hay wque poner character y no characters, ya que characters representa la lista entera de personajes y no tiene la propiedad especie, hay que preguntarle al personaje individual que tenemos en la mano en esa vuelta del bucle  seria con character*/
+
+
+        humanCharacters.push(character); 
+    }
+
+}
+
+console.log(humanCharacters);
+
+/* no da como resultado: todo ok
+[
+  { name: 'Luke Skywalker', species: 'Human' },
+  { name: 'Darth Vader', species: 'Human' },
+  { name: 'Leia Organa', species: 'Human' },
+  { name: 'Obi-Wan Kenobi', species: 'Human' },
+  { name: 'Han Solo', species: 'Human' }
+]
+
+
+*/
+
+/* Con esto me da el recultado correcto pero el includes es mas bien para buscar un trozo de texto en una frase larga, como aqui buscariamos en la propiedad species que es una cat cerrada y exacta podemos hacerlo con === cambiandolo solo un poco*/
+
+
+const humanCharacters2 = [];
+
+
+for (const character2 of characters) { // recorremos el array original de personajes 
+  
+  
+  if (character2.species === 'Human') { /* verificamos que el valor de la propiedad species es igual a Human */
+    
+    
+    humanCharacters2.push(character2); // si se cumple metemos el objeto del personaje enetero en el nuevo array
+  }
+}
+
+
+console.log(humanCharacters2);
+
+/* nos da: todo ok 
+[
+  { name: 'Luke Skywalker', species: 'Human' },
+  { name: 'Darth Vader', species: 'Human' },
+  { name: 'Leia Organa', species: 'Human' },
+  { name: 'Obi-Wan Kenobi', species: 'Human' },
+  { name: 'Han Solo', species: 'Human' }
+]
+*/
+
+// Tmabién podemos aplicar .filter como hemos hecho en otros ejercicios 
+
+// "Fíltrame los personajes y quédate solo con aquellos cuya especie sea 'Human'"
+const humanCharacters3Filter = characters.filter(character3 => character3.species === 'Human'); /* Con esto filtramos los personajes y nos quedamos solo los que su especie sea human */
+
+console.log(humanCharacters3Filter);
+/* Nos daría: todo ok
+[
+  { name: 'Luke Skywalker', species: 'Human' },
+  { name: 'Darth Vader', species: 'Human' },
+  { name: 'Leia Organa', species: 'Human' },
+  { name: 'Obi-Wan Kenobi', species: 'Human' },
+  { name: 'Han Solo', species: 'Human' }
+]*/

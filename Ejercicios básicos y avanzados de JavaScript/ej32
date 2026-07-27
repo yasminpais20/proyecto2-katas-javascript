@@ -1,0 +1,37 @@
+/*Ejercicio 32
+
+Crea una función que reciba un array de objetos representando a varios miembros de los X-Men y su año de aparición. La función debe retornar el miembro más antiguo.
+Utiliza este array para probar tu función.*/
+
+const xMen = [
+  { name: 'Wolverine', year: 1974 },
+  { name: 'Cyclops', year: 1963 },
+  { name: 'Storm', year: 1975 },
+  { name: 'Phoenix', year: 1963 },
+  { name: 'Beast', year: 1963 },
+  { name: 'Gambit', year: 1990 },
+  { name: 'Nightcrawler', year: 1975 },
+  { name: 'Magneto', year: 1963 },
+  { name: 'Professor X', year: 1963 },
+  { name: 'Mystique', year: 1978 }
+];
+
+function findOldestXMen(xMen) {
+  let mutanteMasAntiguo = xMen[0]; /* Ojo no iniciar este en 0 ya que si lo hiciesemos así, al comparar no nos entraría ninguno, en principio vamos a suponer que l primer elemento de la lista Wolverine es el más antiguo, además lo guardamos en un variable en lugar de en una constante porque suponemos que lo va a superar alguno de los elmentos que vamos a recorrer después y vamos a variar su valor*/
+
+  for(const mutante of xMen){ // Recorremos toda la lista de mutantes( el array)
+    if (mutante.year < mutanteMasAntiguo.year){ /* Si el mutante que tenemos en la mano( el que estamos recorriendo) tiene un año menor al que tenemos guardado en la variable mutanteMasAntiguo, esta variablé cambiará al valor que estamos recorriendo*/
+        mutanteMasAntiguo = mutante;
+    }
+}
+
+ return mutanteMasAntiguo; /* Con esto devolvemos el resultado de mutanteMasantiguo después de recorrer la lista de todos los mutantes*/
+
+}
+
+const mutanteMasAnciano = findOldestXMen(xMen); /* Pasamos el array de mutantes y guardamos lo que devuelve en una variable(constante en este caso ya que ya no va a variar ya que ya hemos recorriedo el array y determinado el más antiguo)*/
+
+console.log("El X-Men más antiguo es:", mutanteMasAnciano);
+
+/* Nos da El X-Men más antiguo es: { name: 'Cyclops', year: 1963 } todo ok*/
+/* En la lista tenemos un empate entre cinco mutantes del mismo año, pero tal como está formulada nuestra solución se quedará con el primero que aparezca, si quisiesemos que se quedase con el último sólo tendríamos que poner un <= en el if)*/

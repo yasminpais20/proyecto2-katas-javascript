@@ -1,0 +1,23 @@
+/*Ejercicio 17
+For...in: Usa un for...in para imprimir por consola los datos del alienígena.
+Debería tener este formato cada uno de los console.log: "La propiedad __ tiene cómo valor: __"
+Puedes usar este objeto: */
+
+const alien = {
+    name: 'Xenomorph',
+    species: 'Xenomorph XX121',
+    origin: 'Unknown',
+    weight: 180
+};
+
+for (const propiedad in alien){ // usamos el bucle for in en este objeto de manera analoga a como lo haciamos en los arrays, el indice nos da igual, tan solo queremos recorrerlo entero de manera más simplificada (1)*/
+  console.log(`La propiedad ${propiedad} tiene cómo valor: ${alien[propiedad]}`); /* propiedad nos dará la clave(name,species...)
+     alien[propiedad] nos dará el valor de dinamico('Xenomorph','Xenomorph XX121)*/
+                                                                                
+
+}
+
+
+/* ojo, si hubiesemos puesto alien.propiedad hubiesemos ido al objeto a buscar literalmente la etiqueta "propiedad" y al no tener ninguna con el nombre exacto nos devolvería un undefinded en todas las vueltas
+
+Al usar alien[propiedad] primero miramos la palabra que tenemos guardada propiedad en esa vuelta del bucle y luego busca esa etiqueta en el objeto alien */

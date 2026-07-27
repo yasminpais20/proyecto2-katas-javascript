@@ -1,0 +1,51 @@
+/*Ejercicio 25
+
+Dada una lista de películas, cuenta cuántas son de antes del año 2000 y cuántas son posteriores, utilizando un bucle.
+Imprime ambos conteos por consola.*/
+
+const movies = [
+  { title: 'The Matrix', releaseYear: 1999 },
+  { title: 'Star Wars: Episode IV – A New Hope', releaseYear: 1977 },
+  { title: 'Inception', releaseYear: 2010 },
+  { title: 'Jurassic Park', releaseYear: 1993 },
+  { title: 'The Shawshank Redemption', releaseYear: 1994 },
+  { title: 'Pulp Fiction', releaseYear: 1994 },
+  { title: 'Avatar', releaseYear: 2009 },
+  { title: 'The Dark Knight', releaseYear: 2008 },
+  { title: 'Fight Club', releaseYear: 1999 },
+  { title: 'Forrest Gump', releaseYear: 1994 }
+];
+
+let peliculasAntes2000 = 0;    /* En este caso queremos contar las peliculas así creamos contadores numericos para cada cosa que queremos contar y los inicializamos a 0, ya que en este caso no queremos guardar las peliculas, solo contar cuantas hay de cada tipo (nada de arrays vacios entonces), además lo creamos con let porque los numeros van a ir cambiando segun vayamoc contando*/
+let peliculasDespues2000 = 0;
+
+for(const movie of movies){  /* recorremos el array de peliculas */
+
+    if (movie.releaseYear < 2000){ /*Si el año de lanzamiento es estrictamente menor a 2000*/
+        peliculasAntes2000++; /* le sumamos uno al contador de peliculasAntes2000*/
+    
+    }else if (movie.releaseYear >=2000){ /* si el año de lanzamiento es mayor o igual a 2000 el encunciado no lo especifica pero inclui aqui el 2000 de manera arbitraria*/ 
+
+        peliculasDespues2000++; /* le sumamos uno al contador de peliculasDespués2000*/
+      }
+
+}
+
+console.log("Películas anteriores al año 2000:", peliculasAntes2000);
+
+console.log("Películas posteriores al año 2000:", peliculasDespues2000);
+/* nos da por consola: todo ok
+Películas anteriores al año 2000: 7
+Películas posteriores al año 2000: 3
+
+*/
+
+/* Usando el método filter() y lenngth podemos hacerlo mucho mas compacto*/
+
+// Filtramos y directamente medimos la longitud (.length) del array resultante
+
+const conteoAntes2000 = movies.filter(movie => movie.releaseYear < 2000).length;
+const conteoDespues2000 = movies.filter(movie => movie.releaseYear >= 2000).length;
+
+console.log("Películas anteriores al año 2000:", conteoAntes2000);
+console.log("Películas del año 2000 en adelante:", conteoDespues2000);

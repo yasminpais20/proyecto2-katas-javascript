@@ -1,0 +1,71 @@
+/* Ejercicio 11
+
+Calcular promedio mezclado: Crea una función que reciba por parámetro un array y cuando es un valor number lo sume y de lo contrario cuente la longitud del string y lo sume.
+
+Es un poco locura, pero podremos ejercitar nuestra lógica con este ejercicio.
+
+Puedes usar este array para probar tu función:   */
+
+
+
+const mixedElements = [
+  6,
+  1,
+  "Marvel",
+  1,
+  "hamburguesa",
+  "10",
+  "Prometeo",
+  8,
+  "Hola mundo",
+];
+
+function averageWord(list){
+  
+   let sumaTotal = 0; // Usamos let porque vamos a resignar su valor en cada vuelta y lo iniciamos a 0 para empezar a contar
+
+
+for (const elemento of list){ // usamos la version for of porque solo queremos recorrer el array entero, con este es mas facil
+     
+  if (typeof elemento === "number"){ /* Metemos un condicional para que si typeof nos devuelve que es un numero lo sume directamente */
+     
+     sumaTotal += elemento;
+
+  }else if (typeof elemento === "string"){ /* en el caso de que typeof nos diga que es un string aplicamos length que nos devolvera la longitud del mismo en número y entonces lo sumamos */
+    sumaTotal += elemento.length;
+
+  }
+
+}
+
+return sumaTotal; // Devolvemos la suma total para afuera 
+
+}
+
+const resultado = averageWord(mixedElements);
+
+console.log(`La suma total mezclada es ${resultado}`); // Da 53
+
+
+
+// También podemos aplicar el .reduce() para hacerlo mas reducido como en anteriores ejercicios
+
+function averageWord2(list){
+  
+  const sumaTotal2= list.reduce((acumulator,elemento)=>{
+     if(typeof elemento === "number"){
+
+      return acumulator + elemento; /* Como aqui le hemos metido los {} para el condicional ya funcion flecha ya no nos la devuelve por defecto por lo que tendremois que ponerle un return*/
+
+     }else if(typeof elemento ==="string") {
+
+      return acumulator + elemento.length;
+     }
+
+  },0);//para iniciar la cuenta en 0
+
+   return sumaTotal2 // retornamos directamente la suma
+
+}
+
+console.log(`La suma total mezclada es ${averageWord2(mixedElements)}`);// Nos da 53 de nuevo

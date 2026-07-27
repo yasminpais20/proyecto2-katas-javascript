@@ -1,0 +1,79 @@
+/*Ejercicio 31
+Dada una lista de artistas con sus influencias, utiliza bucles anidados para listar todos los artistas y sus influencias directas e imprime cada par por consola.
+*/
+const artists = [
+  { name: 'Kurt Cobain', influences: ['The Beatles', 'Pixies', 'Lead Belly'] },
+  { name: 'David Bowie', influences: ['Little Richard', 'Chuck Berry', 'The Velvet Underground'] },
+  { name: 'Eddie Vedder', influences: ['The Who', 'Neil Young', 'Jim Morrison'] },
+  { name: 'Freddie Mercury', influences: ['Liza Minnelli', 'Jimi Hendrix', 'Aretha Franklin'] },
+  { name: 'John Lennon', influences: ['Elvis Presley', 'Chuck Berry', 'Buddy Holly'] }
+];
+
+/* Analogía del reloj para bucles anidados:
+El bucle externo representaría las horas, avanza despacio y por cada paso que da se queda quieto esperando que a que el bucle interno termine.
+El bucle interno representaría los minutos, avanza rápido y tiene que dar su vuelta completa(60 pasos) antes de que el bucle externo pueda dar su siguiente paso*/
+
+/*  por cada artista(bucle externo), tenemos que dar una vuelta completa por todas sus influencias(bucle interno) antes de pasar al siguiente artista*/
+
+//1 BUCLE EXTERNO(horas del reloj)
+
+for(const artist of artists) { /* Con esto recorremos el array principal de artistas uno a uno*/
+
+  //2 BUCLE INTERNO(los minutos)
+
+for(const influence of artist.influences){ /* Con el artista actual en la mano, accedemos a su propiedad influences( que es otro array)*/
+
+  /* Ahora imprimimos el resultado en un console.log donde podremos acceder a artist.name (del bucle de fuera) como a influence(del bucle de dentro)*/
+
+  console.log(`${artist.name} fue influenciado por ${influence}`);
+
+
+}
+
+}
+
+/* Esto nos dará como resultado: Todo ok 
+
+Kurt Cobain fue influenciado por The Beatles
+Kurt Cobain fue influenciado por Pixies
+Kurt Cobain fue influenciado por Lead Belly
+David Bowie fue influenciado por Little Richard
+David Bowie fue influenciado por Chuck Berry
+David Bowie fue influenciado por The Velvet Underground
+Eddie Vedder fue influenciado por The Who
+Eddie Vedder fue influenciado por Neil Young
+Eddie Vedder fue influenciado por Jim Morrison
+Freddie Mercury fue influenciado por Liza Minnelli
+Freddie Mercury fue influenciado por Jimi Hendrix
+Freddie Mercury fue influenciado por Aretha Franklin
+John Lennon fue influenciado por Elvis Presley
+John Lennon fue influenciado por Chuck Berry
+John Lennon fue influenciado por Buddy Holly
+*/
+
+
+
+/* También podemos plantear este ejercicio con un for each que es muy similar al bucle for of, pero le da una nueva sintaxix usando callbbacks y arrow functions, pero ojo sólo nos servirá para recorrer arrays puesto que es un método de array*/
+
+const numbers=[1,2,3,4,5,6,7];
+
+numbers.forEach((number)=>
+  {console.log(number);
+
+})
+
+
+
+
+/* Sería enntonces: (aqui lo usamos porque  solo queremos hacer bucles anidados sin devolver un nuevo array y ejecutando solo un console.log) por cada elemento que haya en este array, ejecuta esta función*/
+
+// Bucle externo
+artists.forEach(artist => { /* aqui artists es nuestro array principal, la lista con los 5 objetos de los músicos, el forEach es para recorrer la lista completamente; y artist =>{ es la función flecha (la prueba), artist es el parametro que nos inventamos para nombrar al elemento individual que cogemos en cada vuelta*/ 
+  
+  // Bucle interno
+  artist.influences.forEach(influence => { // accedemos  a un array(influences) que esta escondido dentro de un objeto, que a su vez está dentro de otro array(artists)
+    
+    console.log(`${artist.name} - ${influence}`);/* el bucle interno siempre tiene acceso a las variables del bucle externo, por eso hemos podido meter artist.name e influence en el mismo console.log y nos daría el mismo resultado, asi que todo ok*/
+    
+  });
+});

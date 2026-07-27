@@ -1,0 +1,75 @@
+/*Ejercicio 39
+
+Dado el siguiente código usa forof y forin para saber cuantas veces ha sido cada sonido agregado por los usuarios a favorito.
+Para ello recorre la lista de usuarios y usa forin para recoger el nombre de los sonidos que el usuario tenga como favoritos.
+Una vez accedas a ellos piensa en la mejor forma de hacer un conteo de cada vez que ese sonido se repita como favorito en cada usuario.
+Este ejercicio es un poco complicado con los conocimientos actuales pero...a la vez un buen reto y oportunidad para comprender que hay muchas formas de hacer las cosas en JavaScript.*/
+
+const users = [
+  {
+    name: "Alberto",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 50 },
+      rain: { format: "ogg", volume: 60 },
+      firecamp: { format: "mp3", volume: 80 },
+    },
+  },
+  {
+    name: "Antonio",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 30 },
+      shower: { format: "ogg", volume: 55 },
+      train: { format: "mp3", volume: 60 },
+    },
+  },
+  {
+    name: "Santiago",
+    favoritesSounds: {
+      shower: { format: "mp3", volume: 50 },
+      train: { format: "ogg", volume: 60 },
+      firecamp: { format: "mp3", volume: 80 },
+    },
+  },
+  {
+    name: "Laura",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 67 },
+      wind: { format: "ogg", volume: 35 },
+      firecamp: { format: "mp3", volume: 60 },
+    },
+  },
+]
+
+const conteoFavoritos = {}; /*creamos un objeto vacío, para ir anotando las cuentas */
+
+//1º BUCLE (for of): Recorremos el array de usuarios
+
+for (const user of users){
+
+  //2º BUCLE (for in)  Recorremos el objeto de sonido(favoriteSound) y sacamos las etiquetas(nombres) de los sonidos de cada usuario
+  for (const sonido in user.favoritesSounds){ /* extraemos los nombres de los sonidos(claves del objeto) y los guardamos temporalmente en formato texto(string) dentro de la variable sonido, hay que sacar estos uno por uno para poder ir al conteoFavoritosd y ver si ya estaban apuntados o no*/
+
+// Ahora el contador en sí
+
+if (conteoFavoritos[sonido]){ /* Con este condicional, preguntamos si existe el sonido que estamos recorriendo en ese momento dentro del objeto que hemos creado para el conteo (conteoFavoritos)*/
+
+conteoFavoritos[sonido] += 1; /*Si nos dice que ya exisye en nuestro objeto conteoFavoritoss, le sumamos 1 al valor que tenemos guardado*/ 
+
+//Si no existe(respuesta negativa), osea es la primera vez que vemos este elemento, lo creamos y le asignamos un 1
+}else{
+
+conteoFavoritos[sonido] = 1;
+   } 
+  }
+}
+/* Suponiendo que estamos en la primera vuelta del bucle sonido guardaría la palabra "waves" además,que venimos a esta rama porque la condicion del if falló por lo que no tenemis apuntado "waves" en nuestro conteoFavorito.
+Es más, conteoFavorito en esta primera vuelta esta vacío tal que así {}, con el conteoFavoritos["waves"] usamos los corchetes para que nos busque no la palabra litera "sonido"( esto lo haria con el .), sino el texto que este lleva dentro, por eso tenemos conteoFavoritos["waves"] 
+
+Teniendo conteoFavoritos["waves"] = 1 cuando sustituimos valores, en primer lugar se iremos  al objeto vacio y buscaremos la propiedad con la etiqueta waves, como no está ( no existe), se creará de manera automática y se le asignará waves y le meterá el número 1 
+
+Nota: Si usamos corchetes para asignarle un valor a una propiedad que no existe en un objeto; Javascript no nos da error, nos crea esa nueva propiedad automáticamente y guarda el valor indicado ( esto se llama creación dinámica de propiedades)*/ 
+
+// Imprimimos el conteo final
+console.log(conteoFavoritos); 
+/* Nos dara:
+{ waves: 3, rain: 1, firecamp: 3, shower: 2, train: 2, wind: 1 } todo ok */

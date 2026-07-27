@@ -1,0 +1,69 @@
+/*Ejercicio 29
+Agrupa las películas de Star Wars por década de lanzamiento en un objeto donde las claves son las décadas y los valores son arrays de películas.
+Utiliza bucles para lograrlo e imprime el objeto final por consola.*/
+const starWarsMovies = [
+  { title: 'A New Hope', releaseYear: 1977 },
+  { title: 'The Empire Strikes Back', releaseYear: 1980 },
+  { title: 'Return of the Jedi', releaseYear: 1983 },
+  { title: 'The Phantom Menace', releaseYear: 1999 },
+  { title: 'Attack of the Clones', releaseYear: 2002 },
+  { title: 'Revenge of the Sith', releaseYear: 2005 },
+  { title: 'The Force Awakens', releaseYear: 2015 },
+  { title: 'The Last Jedi', releaseYear: 2017 },
+  { title: 'The Rise of Skywalker', releaseYear: 2019 },
+  { title: 'Rogue One', releaseYear: 2016 },
+  { title: 'Solo', releaseYear: 2018 }
+];
+ 
+const peliculasPorDecada = { /* en lugar de crear 5 arrays sueltos, creamos un objeto que ya contiene los arrays vacios clasificaod por el nombre de la década, así es mas facil de gestionar*/
+  "1970s":[],
+  "1980s":[],
+  "1990s":[],
+  "2000s":[],
+  "2010s":[],
+  
+}
+
+for (const movie of starWarsMovies){ // Con esto recorremos todas las películas
+
+    if(movie.releaseYear >= 1970 && movie.releaseYear < 1980){ /* con el operador and && agrupamos aqui las películas de 1970 y posteriores y ademas cuyo año de estreno sea menor a 1980*/
+       peliculasPorDecada["1970s"].push(movie); /*una vez filtrado con el condicional para meterlo en el objeto llamamos a la propiedad exacta y le hacemos un push*/
+    
+    }else if(movie.releaseYear >= 1980 && movie.releaseYear < 1990){
+       peliculasPorDecada["1980s"].push(movie); 
+
+    }else if(movie.releaseYear >= 1990 && movie.releaseYear < 2000){
+       peliculasPorDecada["1990s"].push(movie);  
+ 
+    }else if(movie.releaseYear >= 2000 && movie.releaseYear < 2010){
+       peliculasPorDecada["2000s"].push(movie);
+
+    }else if(movie.releaseYear >= 2010 && movie.releaseYear < 2020){ /* Así todos los condicionales los irán clasificando las peliculas según su año de estreno*/
+       peliculasPorDecada["2010s"].push(movie); 
+    }
+
+}
+
+console.log(peliculasPorDecada);
+/* Nos daría lo siguiente, objeto, donde agrupando por rangos, todo ok  :
+{
+  '1970s': [ { title: 'A New Hope', releaseYear: 1977 } ],
+  '1980s': [
+    { title: 'The Empire Strikes Back', releaseYear: 1980 },
+    { title: 'Return of the Jedi', releaseYear: 1983 }
+  ],
+  '1990s': [ { title: 'The Phantom Menace', releaseYear: 1999 } ],
+  '2000s': [
+    { title: 'Attack of the Clones', releaseYear: 2002 },
+    { title: 'Revenge of the Sith', releaseYear: 2005 }
+  ],
+  '2010s': [
+    { title: 'The Force Awakens', releaseYear: 2015 },
+    { title: 'The Last Jedi', releaseYear: 2017 },
+    { title: 'The Rise of Skywalker', releaseYear: 2019 },
+    { title: 'Rogue One', releaseYear: 2016 },
+    { title: 'Solo', releaseYear: 2018 }
+  ]
+}
+
+*/

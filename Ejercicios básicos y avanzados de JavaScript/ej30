@@ -1,0 +1,105 @@
+/*Ejercicio 30
+Dada una lista de canciones, clasifícalas en un objeto donde las claves sean los géneros y los valores sean arrays de canciones de ese género.
+Utiliza bucles para estructurar este objeto e imprime el resultado por consola. */
+
+const tracks = [
+  { title: 'Enter Sandman', genre: 'Metal' },
+  { title: 'Back in Black', genre: 'Rock' },
+  { title: 'Bohemian Rhapsody', genre: 'Rock' },
+  { title: 'Blinding Lights', genre: 'Pop' },
+  { title: 'Old Town Road', genre: 'Country' },
+  { title: 'Smells Like Teen Spirit', genre: 'Grunge' },
+  { title: 'Bad Guy', genre: 'Pop' },
+  { title: 'Thunderstruck', genre: 'Rock' },
+  { title: 'Hotel California', genre: 'Rock' },
+  { title: 'Stairway to Heaven', genre: 'Rock' }
+];
+
+/* Primero vamos a crear un objeto, que a su vez contendrá los arrays que representaran cada género musical y mediante condicionales y el acceder al objeto track.genre=== y y con un push los iremos clasificando*/ 
+const cancionesPorGenero = {
+    "Metal"  :[],
+    "Rock"   :[],
+    "Pop"    :[],
+    "Country":[],
+    "Grunge" :[]
+};
+
+ for (const track of tracks){
+
+    if(track.genre ==='Metal'){ /* Si es genre(género) es estrictamente igual a metal lo metemos en el objeto que creamos para clasificar (cancionesPorGenero) dentro del array Metal */
+       cancionesPorGenero["Metal"].push(track); /* metemos la canción por la que estamos pasando en el bucle(track) mediante un push concretando que lo estamos metiendo en cancionesPor Genero en el array Metal*/
+    
+    }else if(track.genre ==='Rock'){
+        cancionesPorGenero["Rock"].push(track); /* Ojo en esta parte .push es un método(una función) de los arrays, para que una función se ejecute, siempre debemos llamarla utilizando paréntesis () y pasarle dentro del elemento que queremos guardar como argumento ( que es el dato real o valor exacto que le entregamos a una funcion); si le metiesemos un .push.track piensa que estamos intentando buscar una propiedad llamada track dentro de la función push, no ejecutará la acción y el array se quedará vacio [] */  /* Sin () si estás mirando la función; () si estás usando la función.*/
+
+    }else if(track.genre ==='Pop'){
+        cancionesPorGenero["Pop"].push(track);
+    
+    }else if(track.genre ==='Country'){
+        cancionesPorGenero["Country"].push(track);
+    
+    }else if(track.genre ==='Grunge'){
+        cancionesPorGenero["Grunge"].push(track);
+    }
+
+}
+
+console.log(cancionesPorGenero);
+ /* Nos dará como resultado: todo ok 
+{
+  Metal: [ { title: 'Enter Sandman', genre: 'Metal' } ],
+  Rock: [
+    { title: 'Back in Black', genre: 'Rock' },
+    { title: 'Bohemian Rhapsody', genre: 'Rock' },
+    { title: 'Thunderstruck', genre: 'Rock' },
+    { title: 'Hotel California', genre: 'Rock' },
+    { title: 'Stairway to Heaven', genre: 'Rock' }
+  ],
+  Pop: [
+    { title: 'Blinding Lights', genre: 'Pop' },
+    { title: 'Bad Guy', genre: 'Pop' }
+  ],
+  Country: [ { title: 'Old Town Road', genre: 'Country' } ],
+  Grunge: [ { title: 'Smells Like Teen Spirit', genre: 'Grunge' } ]
+}
+
+*/
+
+
+/* En la anterior resolucion había que crear previamente cada categoria a mano, sería mas limpio oasí */
+
+const cancionesPorGenero2 = {}; /* Aquí creamos otro objeto pero  esta vez lo dejamos vacio, en este caso no le añadimos ninguna propiedad de antemano*/
+
+for (const track of tracks) { /* empezamos a recorrer el array tracks uno a uno, en cada vuelta track es el objeto completo de una canción, en la primera vuelta será  track: {title: 'Enter Sandman', genre:'Metal' en esta el track.genre valdrá Metal  */
+  if (!cancionesPorGenero2[track.genre]) { /* track.genre en esta primera vuelta valdría Metal como, seria cancionesPorGenero["Metal"], aquí estamos pidiendo una propiedad que no existe en el objeto, ya que empezamos con él vacío, así nos devolverá undefined, como tenemos el operador! al principio y al comportarse undefinded aqui como un false, se invierte su valor y devuelve un true, por el que entramos en esta rama del condicional  y como no hay nada en el objeto en la primera vuelta creamos la propiedad, (objeto[clave]= valor en un objeto crea la propiedad si no existe o sobreescribe la que ya existia*/ 
+
+  /* en sucesivas vueltas si ya tenemos creado ese array nos dará un true y con ! la negación que tenemos al principio de la linea irá directamente fuera del if, sin crear ni sobreescribir nada*/
+    
+    cancionesPorGenero2[track.genre] = []; /* Ojo aqui hemos creado la propiedad, pero el array sigue vacio*/
+  }
+  cancionesPorGenero2[track.genre].push(track); /* ahora al salir del if, tendremos cancionesPorGenero[track.genre] que es el array que acabamos de crear en esta primera 
+    vuelta, con metal, sobre este array tenemos el push(track) que nos añade el objeto entero de la cancion al final del array.*/
+  
+  console.log(cancionesPorGenero2); 
+   
+    /*
+
+Nos dará : todo ok
+{
+  Metal: [ { title: 'Enter Sandman', genre: 'Metal' } ],
+  Rock: [
+    { title: 'Back in Black', genre: 'Rock' },
+    { title: 'Bohemian Rhapsody', genre: 'Rock' },
+    { title: 'Thunderstruck', genre: 'Rock' },
+    { title: 'Hotel California', genre: 'Rock' },
+    { title: 'Stairway to Heaven', genre: 'Rock' }
+  ],
+  Pop: [
+    { title: 'Blinding Lights', genre: 'Pop' },
+    { title: 'Bad Guy', genre: 'Pop' }
+  ],
+  Country: [ { title: 'Old Town Road', genre: 'Country' } ],
+  Grunge: [ { title: 'Smells Like Teen Spirit', genre: 'Grunge' } ]
+}*/
+}
+/* cuando termine de recorrer todas las canciones, el objeto que creamos al principio cancionesPorGenero2 tendrá una clave por cada genero que tenga la cons tracks, con las mismas agrupadas de manera correctamente, la ventaja de este método es que no tendremos que crear los generos previamente para luego agruparlos, el mismo los creará en funcion al contenido de tracks*/ 

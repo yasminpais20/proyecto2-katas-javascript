@@ -1,0 +1,110 @@
+/*Ejercicio 38
+Dado el siguiente código usa forof y forin para hacer la media del volumen de todos los sonidos favoritos que tienen los usuarios.
+Es decir, la media de volumen de todos los volumenes juntos.*/
+
+const users = [
+  {
+    name: "Alberto",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 50 },
+      rain: { format: "ogg", volume: 60 },
+      firecamp: { format: "mp3", volume: 80 },
+    },
+  },
+  {
+    name: "Antonio",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 30 },
+      shower: { format: "ogg", volume: 55 },
+      train: { format: "mp3", volume: 60 },
+    },
+  },
+  {
+    name: "Santiago",
+    favoritesSounds: {
+      shower: { format: "mp3", volume: 50 },
+      train: { format: "ogg", volume: 60 },
+      firecamp: { format: "mp3", volume: 80 },
+    },
+  },
+  {
+    name: "Laura",
+    favoritesSounds: {
+      waves: { format: "mp3", volume: 67 },
+      wind: { format: "ogg", volume: 35 },
+      firecamp: { format: "mp3", volume: 60 },
+    },
+  },
+];
+
+// consideraciones previas
+
+/* En el enunciado tenemos un array que contiene objetos, que a su vez contiene objetos y estos tienen propiedades,los valores de estas propiedades son a su vez también objetos (objetos anidados), ojo con esto al acceder a las propiedades, no usar . usar[] para acceder a ellas o revienta el codigo*/
+
+/* 1 BUCLE FOR OF: (para arrays) este nos sirve para recorrer listas ordenadas, aqui lo usaremos para recorrer el array users*/
+/* 2 BUCLE FOR IN: (para objetos) lo usaremos para recorrer las etiquetas o clases de un objeto (cuando no es una lista ordenada, si no un diccionario ) Aqui como favoriteSounds no es un array con corchetes [], si no un objeto con llaves {} necesitaremos el for in para leer sus claves(waves,rain firecamp)*/
+
+/* Cuidado, cuando el for in nos de una clave (waves ejem) no podemos escibir user.favoritesSounds.waves a mano ya que el siguiente será rain y ahi el codigo nos peta, tenemos que usar corchetes para introducir la variable usar.favoritesSounds[sonido]*/
+
+//EJERCICIO 38
+
+/* Al ser la media aritmética por definición la suma de todos los datos dividida entre el número total de datos, vamos a necesitar crear dos variables para calcularla, una para sumar todos los volúmenes y la otra para contar el número de sonidos en total*/
+
+let sumaVolumenes = 0; /* Esta será la suma de volúmenes, la iniciamos en 0 y la creamos con let porque va a ir previsiblemente aumentando*/
+let cantidadDeSonidos = 0; /* Está será la cantidad de sonidos que tenemos , la iniciamos en 0 y la creamos con let porque va a ir previsiblemente aumentando*/
+
+//1º BUCLE(for of): recorremos el array de usuarios
+for (const user of users){
+  //2º BUCLE(for in): recorremos el objeto de sonidos de cada usuario
+  for (const sonidoClave in user.favoritesSounds){ /* aqui creamos una variable const en el for in que tomará valores(waves,rain firecamp)
+    user.favoritesSounds- Aqui partimos del primer bucle for of que nos habrá dado un usuario, alberto por ejem (metido en la variable user), aqui le estariamos diciendo que coja a alberto(user) y nos ponga su objeto de sonidos favoritos(favoritesSounds),tal que así
+     {
+      waves: { format: "mp3", volume: 50 },
+      rain: { format: "ogg", volume: 60 },
+      firecamp: { format: "mp3", volume: 80 },
+    },
+
+    in- este delante de un objeto actua como lector de etiquetas, con este le decimos que nos lea las claves, leería "waves", "rain" y "firecamp" en forma de string( en la primera pasada, la de alberto) tal y como lo he escrito ignora totalmente formatos y volumenes, serían esencialmente las palabras que tenemos a la izquierda de los dos puntos: en funcion de la pasada que este dando, (el nombre de la propiedad en formato texto )
+
+    const sonidoClave- Esta es la varaible temporal que creamos dentro del bucle, en esta caja vamos a ir guardando cada pegatina que lea una por una(waves,rain o firecamp en el primer caso)
+
+    for (const sonidoClave in user.favoritesSounds) vendria a significar que en primer lugar miremos el objeto de sonidos de ese usuario(user)y que por cada etiqeuta que encontremos(waves,rain, firecamp en la primera pasada) guardaremos de manera temporal su nombre en texto (waves ejem) dentro de la variable sonidoClave y repetimos el el bloque de codigo, es basicamente un extractor de titulos
+    */
+
+    //accedemos al volumen exacto usando [] corchetes para inyectar la llave
+
+    const VolumenDelSonido = user.favoritesSounds[sonidoClave].volume /* esta constante es simplmente para extraer el valor numerico de volumen en cada caso y guardarlo, como se crea en el interior del bucle esta constante se va a crear y destruir dentro del mismo asi que podemos crearla con un const, se podría hacer con un let pero le metemos const para que dentro de la operacion del bucle no la podamos resignar o borrar por error
+    
+    user- es la variable del primer bucle for of, si estamos empezando tiene todo el objeto de alberto(nombre y sonidos)    
+    .favoriteSound-  usamos un punto porque sabemos exactamente como se llama la propiedad y cogemos la carpeta de sonidos favoritoss
+    (lo que tiene concretamente lo explique en el punto anterior )
+    [sonidoClave]- usamos corchetes porque no queremos buscar la palabra litera "sonidoClave" si no lo que tenemos dentro de la variable, como el for in acaba de empezar sonidoClave contiene el texto waves lo leemos como [waves] y abre la subcarpeta que nos daría:
+    { format: "mp3", volume: 50 }
+    
+    .volume- como ahora tenemos en la mano un objeto ya reducidp y que dentro hay una propiedad que se llama volumen, esta vez si  usamos el punto para extraer el valor, que en este primero será el número 50
+    const constVolumenDelSonido = 50;
+    */
+    // Sumamos ese volumen al acumulador total
+    sumaVolumenes += VolumenDelSonido
+    
+    //Sumamos uno también a nuestro contador de sonidos(acabamos de leer uno nuevo)
+
+    cantidadDeSonidos += 1; /* se puedes escribir también cantidadDeSonidos++*/
+
+
+  }
+}
+
+//Terminados los bucles calculamos la media matematica de los volúmenes (suma total/cantidad sonidos)
+
+const mediaVolumen = sumaVolumenes / cantidadDeSonidos;
+console.log(`El volumen total es ${sumaVolumenes}`);
+console.log(`El total de sonidos analizados es: ${cantidadDeSonidos}`);
+console.log(`La media de volumen de todos los sonidos es: ${mediaVolumen}`);
+
+/* Nos dará: todo ok 
+El volumen total es 687
+El total de sonidos analizados es: 12
+La media de volumen de todos los sonidos es: 57.25
+
+*/

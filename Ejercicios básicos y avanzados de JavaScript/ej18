@@ -1,0 +1,50 @@
+/*Ejercicio 18
+
+Usa un bucle for para recorrer todos los destinos del array y elimina los elementos que tengan el id 11 y el id 40.
+Imprime en un console log el array resultante.
+Puedes usar este array: */
+
+const placesToTravel = [
+  { id: 5, name: "Japan" },
+  { id: 11, name: "Venecia" },
+  { id: 23, name: "Murcia" },
+  { id: 40, name: "Santander" },
+  { id: 44, name: "Filipinas" },
+  { id: 59, name: "Madagascar" },
+];
+
+
+for (let i = 0; i< placesToTravel.length;i++){  /* Usamos el bucle for normal para tener control sobre el indice(i) cuando apliquemos el .splice()*/
+  
+  const destino = placesToTravel[i];/* guardamos el elemento actual recorrido en una variable para que sea más facil leerlo */
+     if (destino.id === 11 || destino.id === 40) { /* aqui metemos la condicion para borrar si tiene el id 11 o el 40 usamos || or porque queremos borrar si el id es 11 o si es 40 como no puede ser 11 y 40 a la vezcon && and la condición nunca se cumpliría y no se borraría nada.*/
+        placesToTravel.splice(i,1); /* .splice(posicion, cantidad a borrar), con esto el splice nos borraria el elemento que esta recorriendo en ese momento con id11 o 40 y al borrarlo la longitud del array se modifica simultanemanete y todos los elementos se desplazaran un espacio hacia la izquiera, con lo que si no le restamos un 1 al índice nos quedaía un elemento sin recorrer, por eso ponemos el i--*/
+
+        i--;
+      }
+        
+}
+
+console.log(placesToTravel); /* Sacará por consola [
+  { id: 5, name: 'Japan' },
+  { id: 23, name: 'Murcia' },
+  { id: 44, name: 'Filipinas' },
+  { id: 59, name: 'Madagascar' }
+]                         */
+
+
+/* Con filter() Que nos crea un nuevo array con todos los elementos que cumplna una condición dada queda mas reducido el código 
+  let arrayFiltrado = array.filter((elemento))=> elemento 3);este no te modifica el array dado te crea uno de cero
+*/
+
+// Así nos filtrará la lista quitando los que tengan id 11 o 40*/
+const lugaresFiltrados = placesToTravel.filter(destino => destino.id !== 11 && destino.id !== 40);
+
+console.log(lugaresFiltrados);
+
+ /* Sacará por consola [
+  { id: 5, name: 'Japan' },
+  { id: 23, name: 'Murcia' },
+  { id: 44, name: 'Filipinas' },
+  { id: 59, name: 'Madagascar' }
+]                         */

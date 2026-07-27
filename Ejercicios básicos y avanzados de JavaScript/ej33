@@ -1,0 +1,36 @@
+/*Ejercicio 33
+
+Desarrolla una función que reciba un país por parámetro y devuelva su capital.
+Utiliza un objeto para almacenar los países y sus capitales.
+La función debe manejar casos en los que el país no esté en la lista, devolviendo un mensaje adecuado.
+*/
+
+const capitals = {
+  Spain: 'Madrid',
+  France: 'Paris',
+  Italy: 'Rome',
+  Germany: 'Berlin',
+  Portugal: 'Lisbon',
+  Poland: 'Warsaw',
+  Greece: 'Athens',
+  Austria: 'Vienna',
+  Hungary: 'Budapest',
+  Ireland: 'Dublin'
+};
+
+function getCapital(country) {
+  if (capitals[country]){ /*  Buscamos el pais en el objeto capitols, hay que usar capitals[country] ya que si usamos capitals.country buscará un pais que sea "country" en la lista y como este no está nos devolverá undefinded */
+    return capitals[country]; /* Si el pais existe en la lista, nos devuelve su capital*/
+
+  }else{
+    return `El pais ${country} introducido no está en la lista` /* En el caso de que no esté en la lista, osea que capitals[country] nos devuelva undefined(falso) entra en esta rama del else e imprime el mensaje de error*/
+  }
+  
+}
+
+const capitalEspaña = getCapital('Spain'); /* aqui nombramos a la variable con un valor que si está en la lista, nos devuelve su capital, Madrid todo ok */
+console.log(capitalEspaña);
+
+
+const capitalJapon = getCapital('Japan'); /*aqui nombramos a la variable con un valor que no está en la lista, nos devuelve el mensaje de error El pais  Japan introducido no está en la lista */
+console.log(capitalJapon);

@@ -1,0 +1,50 @@
+/*Ejercicio 37
+
+Dado el siguiente código usa forof para recorrer el array de películas, genera un nuevo array con las categorías de las películas e imprime por consola el array de categorías.
+Ten en cuenta que las categorías no tienen que repetirse.
+Es decir, const categorias = ["comedia", "aventura", "acción", "thriller", "animación"]
+Para filtrar las categorías puedes ayudarte de la función .includes(). */
+
+
+const movies = [
+  {
+    title: "Bracula: Condemor II",
+    duration: 192,
+    categories: ["comedia", "aventura"],
+  },
+  {
+    title: "Spider-Man: No Way Home",
+    duration: 122,
+    categories: ["aventura", "acción"],
+  },
+  {
+    title: "The Voices",
+    duration: 223,
+    categories: ["comedia", "thriller"],
+  },
+  {
+    title: "Shrek",
+    duration: 111,
+    categories: ["comedia", "aventura", "animación"],
+  },
+];
+
+/* Tenemos un array(peliculas) y dentro de cada pelicula tenemos otro array(categorias), por esto para recorrerlo tendremos que hacer un bucle dentro de otro bucle(bucle anidado)*/
+
+const categoriasUnicas = []; /* creamos un array vacío donde guardaremos las categorías sin repetir */
+
+//1º BUCLE: Recorremos cada película de la lista
+for (const movie of movies){
+  //2º BUCLE: Como la propiedad categories a su vez es un array, la recorremos también con otro for of(esta dentro de movies)
+  for (const categoria of movie.categories){
+       
+      if (!categoriasUnicas.includes(categoria)) { /* Comprobamos con includes si la categoría no está en ese array, ya que en este array es donde estamos guardando las categorías sin repetir (const categoriasUnicas), el includes nos devolverá un true si esa categoria se encuentra ya en la lista y un false en caso negativo, como tenemos el operador ! de negación, en caso de no estar la meterá en la lista*/
+
+        categoriasUnicas.push(categoria); /* En caso de que la categoría no esté en la lista de categoriasUnicas, la meteresmos en esta con un push*/
+      }
+  }
+}
+
+console.log(categoriasUnicas);
+/* Nos da:
+[ 'comedia', 'aventura', 'acción', 'thriller', 'animación' ] todo ok */

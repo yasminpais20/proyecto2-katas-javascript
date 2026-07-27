@@ -1,0 +1,54 @@
+/*Ejercicio 9
+
+Calcular una suma puede ser tan simple como iterar sobre un array y sumar cada uno de los elementos.
+Completa la función denominada sumNumbers que toma un array de números como argumento y devuelve la suma de todos los números del array.
+Puedes usar este array para probar tu función: */
+
+const numbers = [1, 2, 3, 5, 45, 37, 58];
+
+function sumNumbers(numberList) {
+  
+let sumaTotal= 0;  /* Creamos una variable que vaya sumando los valores el array iniciandola en 0, es importante iniciarla ya que si queda con undefinded+ algo y se   nos volvería loco ( Nos da Nan "no es un numero") */
+
+// Recorremos cada número del array con un for of
+
+for(const numero of numberList){
+    sumaTotal +=numero; // Con esto sumamos el número actual a la suma total que llevemos acumulada
+
+}
+
+return sumaTotal; // Con esto devolvems el resultado final, para poder invocarlo fuera, aunque en este caso no sería necesario
+}
+
+const resultado = sumNumbers(numbers); //Sacamos solucion por consola
+console.log(`la suma total es ${resultado}`); // Nos da 151
+
+
+/* Ahora vamos a usar el método .reduce(),
+
+este aplica una función a un acumulador y a cada elemento, de izquierda a derecha para reducirlo a un solo valor(osea te da la suma total que es lo que queremos en este caso) La forma es de : let suma = array.reduce((acumulador,elemento)=> acumulador+ elemento,0); */
+
+function sumNumbers2(numberList2) {
+
+ return numberList2.reduce((acumulador, elemento) => acumulador + elemento,0); // Comentamos abajo cada punto(6*) numero ramdom para marcar
+
+}
+
+console.log(`La suma toal es ${sumNumbers2(numbers)}`);// Sacamos resultado por consola nos da 151 otra vez
+
+/* (6) return- Con esto cuando termie de hacer toda la suma nos expulsará un numero fuera de la funcion para que podamos hacer llamadas fuera de esta para usarlo, normalmente las arrow function tienen un retorno implicito(las funciones normales no)*, así que no tenemos que meterle un return a la arrow function si no le ponemos {}, pero si al principio de esta linea ya que si no nos retornaria undefinded la funcion numberList2 (verificado)     
+
+numberList2.reduce() en este cogemos el array const numbers (lista de numeros) y le aplicamos el método .reduce(), este coge la lista y nos devuelve el valor de la suma de todos sus elementos( un único valor)
+
+(acumulador, elemento) =>   Esta es la arrow function, la función felcha que esta dentro del reduced, en esta le decimos eb cada vuelta del bucle loq ue debe de hacer
+
+acumulador- este valor va guardando lo que vamos sumando  
+
+elemento- el numero concreto de la lista que estamos mirando en esa vuelta del bucle
+
+acumulador+ elemento   en esta parte suma loq ue tenemos del acumulador con el numerfo que estas mirando en ese momento del bucle(el elemento) , el resultado de sumar esto será el valor del acumulador para la siguiente vuelta del bucle 
+
+,0  Este  es el valor inicial que le ponemos antes de empezar a dar vueltas.
+
+*/
+

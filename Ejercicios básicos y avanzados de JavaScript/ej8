@@ -1,0 +1,53 @@
+/*Ejercicio 8
+
+Buscar la palabra más larga: Completa la función que tomando un array de strings como argumento devuelva el más largo, en caso de que dos strings tenga la misma longitud deberá devolver el primero.
+Puedes usar este array para probar tu función:
+*/
+const avengers = [
+  "Hulk",
+  "Thor",
+  "Iron Man",
+  "Captain A.",
+  "Spiderman",
+  "Captain M.",
+];
+
+//8
+
+function findLongestWord(lista) {
+  let palabraMasLarga = ""; //Creamos e inicializamos una variable que guarde el valor de la palabra más larga, la iniciamos vacía (string vacio)
+
+  for(const palabra of lista) { /*Codigo que queremos ejecutar para cada elemento, tenemos lista que es el array que queremos recorrer, palabra que es la variable que nos inventamos para referirnos de manera individual durante esa vuelta del bucle y el const que declara la variable para esa vuelta concreta, en este usamos const en lugar de let porque el valor de ese elmento no va a variar dentro de esa vuelta especifica (cada iteración es como declarar la variable desde cero*/
+    if (palabra.length > palabraMasLarga.length){
+        palabraMasLarga = palabra;
+     }
+  }
+      /* Con este condicional evaluaremos si la longitud de la palabra que estamos evaluando es mayor al valor guardado, en caso afirmativo se guarda la palabra mayor, si no se sigue recorriendo el array y se mantiene el valor guardado */ 
+  console.log(palabraMasLarga);/* Cuando acabe de recorrer el array y salga del bucle, este console log nos imprimirá el primer string mas largo, ya que si después tenemos uno de la misma longitud dicho valor no se guardaría */
+}
+
+findLongestWord(avengers);//Captain A y Captain M tienen los dos 10 caracteres y como hemos puesto > se queda con la que apareció primero , captain A
+/* Señalar también que para que el console.log que esta dentro de la función se ejecute, tenemos que invocarlo o llamar a dicha función pasándole el array, cosa que hemos hecho en el último paso*/
+
+/*for of es un bucle para reocrrer elementos de un iterable(string, arrays..., nos simplifica el for cuando lo único que queremos es acceder al valor de cada elemento, sin preocuparnos por los índices) */
+
+//EXTRA
+/* else if (palabra.length === palabraMasLarga.length) {
+      console.log(palabra + " es igual a " + palabraMasLarga);
+    }  Puesto por el profesor*/
+
+function findLongestWord2(lista2) {
+    let palabraMasLarga2 = "";
+
+    for (const palabra2 of lista2) {
+      if (palabra2.length > palabraMasLarga2.length) {
+        palabraMasLarga2 = palabra2;
+    } else if (palabra2.length === palabraMasLarga2.length) {
+      console.log(palabra2 + " es igual a " + palabraMasLarga2); /* aqui imprimimos el caso de empate de número de elementos del string, también nos imprimirá los casos que noi son el mayor, ya que sólo hemos puesto como condición que sean iguales en longitud*/
+    }
+  }
+
+      console.log("Palabra más larga: " + palabraMasLarga2);
+}
+
+       findLongestWord2(avengers);

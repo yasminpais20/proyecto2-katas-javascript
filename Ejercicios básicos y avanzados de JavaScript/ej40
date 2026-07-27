@@ -1,0 +1,74 @@
+/*Ejercicio 40
+
+40.1 Crea una función llamada findArrayIndex que reciba como parametros un array de textos y un texto y devuelve la posición del array cuando el valor del array sea igual al valor del texto que enviaste como parámetro.Haz varios ejemplos y compruébalos.
+*/
+
+const mainCharacters = [
+  "Luke",
+  "Leia",
+  "Han Solo",
+  "Chewbacca",
+  "Rey",
+  "Anakin",
+  "Obi-Wan",
+]; //ojo que si no ponemos el array antes de la funcion nos da error 
+
+//40.1 Función para localizar el índice
+
+function findArrayIndex(array, text) {
+ for (let i = 0; i< array.length;i++){ /* Recorremos el array con un bucle for normal, ya que necesitamos la posición (i) para lo que nos piden en el enunciado*/ 
+    if (array[i] === text){ /* Aqui le metemos un condicional conforme si el elemento que estamos recorriendo en ese momento es exactamente igual el texto que buscamos, devolveremos su posición y la función terminará de manera automática(por el return)*/
+    return i;
+   }
+}
+// finalizado el bucle si no ha encontrado nada, devolvemos un mensaje de error 
+
+return "no existe";
+}
+
+//PRUEBAS FUNCIÓN 1 
+
+console.log(`Índice de 'Chewbacca':`, findArrayIndex(mainCharacters, "Chewbacca")); // Dará 3, ok
+console.log(`Índice de 'Obi-Wan':`, findArrayIndex(mainCharacters, "Obi-Wan")); // Dará 6, ok
+console.log(`Índice de 'Dark Maul':`, findArrayIndex(mainCharacters, "Dark Maul")); // Nos salta el mensaje de que no existe, ok
+
+
+
+
+
+
+/*40.2 Usando la función anterior benefíciate de poder conocer el indice del array para crear una función llamada removeItem que, pasándole un array y un texto como parámetros (los mismos parámetros que en el anterior ejercicio), llame a la función anteriormente creada findArrayIndex y obtén el indice para posteriormente usar la función de javascript .splice() para eliminar el elemento del array.Es decir, tienes que crear una función que elimine elementos del array y retorne el nuevo array sin el elemento, apoyándote en findArrayIndex.
+Finalmente retorna el array.
+De nuevo haz varios ejemplos para practicar y comprueba que funcionan correctamente.*/
+
+//Funcion 40.2 llama a la función anterior y elimina un elemento del array con .splice 
+
+function removeItem(array, text) {
+  const index = findArrayIndex(array,text) /*Usamos la función que creamos en el apartado 1, para saber donde está el apartado dado y guardamos dicho número en la contante index, por comodidad ya que la vamos a estar usando todo el rato, va a tener que hacer el mismo cálculo y para que el codigo nos quede más limpio*/
+
+  /*Comprobamos si existe el elemento que estamos buscando( en la función del apartado anterior si no existía nos devolvía el mensaje "no existe", asi que metiendo el operador ! para negar el contenido nos filtrará los elementos que si existen en este condicional */
+
+    if (index !== "no existe"){
+    // En el caso de que exista usaremos el método .splice() que nos modifica el array original, en el primer parametro meteremos el index o indice(i), que será desde donde empezaremos a borrar y en el segundo parámetro le pondremos cuantos elementos borremos a partir de ahi (le pondremos solo 1)
+
+    array.splice(index, 1);
+    }
+     return array; /* y aqui retornamos el array modificado */
+}
+
+// PRUEBAS FUNCIÓN 2 
+
+// borramos a anakin(pos5) )
+console.log(`Borramos  Anakin:`, removeItem(mainCharacters, "Anakin"));
+/*nos dará: [ 'Luke', 'Leia', 'Han Solo', 'Chewbacca', 'Rey', 'Obi-Wan' ]*/
+
+// ojo, hemos quitado a anakin , el array ha encogido
+// ahora borramos a luke (que al haber borrado a anakin pasa a la pos 0)
+console.log(`Borramos Luke:`, removeItem(mainCharacters, "Luke"));
+/* nos dará: [ 'Leia', 'Han Solo', 'Chewbacca', 'Rey', 'Obi-Wan' ]*/
+
+// ahora probamos a borrar a alguien que no este en el array original
+console.log(`Borramos  Darth Maul:`, removeItem(mainCharacters, "Darth Maul"));
+/*como findArrayIndex dará "no existe" .splice() no se ejecuta y devuelve el array intacto(tal cual)
+
+nos dará : [ 'Leia', 'Han Solo', 'Chewbacca', 'Rey', 'Obi-Wan' ]*/

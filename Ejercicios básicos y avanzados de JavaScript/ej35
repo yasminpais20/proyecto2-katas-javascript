@@ -1,0 +1,119 @@
+/*Ejercicio 35
+
+Desarrolla una función que busque en un array de objetos representando mutantes si existe alguno con un poder específico y retorne un mensaje indicando si fue encontrado o no.
+Considera el caso de múltiples mutantes con el mismo poder.*/
+
+const mutants = [
+  { name: 'Wolverine', power: 'regeneration' },
+  { name: 'Magneto', power: 'magnetism' },
+  { name: 'Professor X', power: 'telepathy' },
+  { name: 'Jean Grey', power: 'telekinesis' },
+  { name: 'Rogue', power: 'power absorption' },
+  { name: 'Storm', power: 'weather manipulation' },
+  { name: 'Mystique', power: 'shape-shifting' },
+  { name: 'Beast', power: 'superhuman strength' },
+  { name: 'Colossus', power: 'steel skin' },
+  { name: 'Nightcrawler', power: 'teleportation' }
+];
+
+function findMutantByPower(mutants, power) {
+  /*creamos un acumulador de texto que ponemos vacio para anotar los nombres y un contador que empieza en 0 para el número de repeticiones de los nombres, como van a ir cambiando usamos let*/
+  /* intenté hacerlo con un array pero el return me para la función y deja de anotar los nombres una vez encuentra uno, así que lo voy a plantear así*/
+
+  let nombresEncontrados = "";
+  let cantidadEncontrados = 0;
+
+  for (const mutante of mutants){ /* recorremos el array mutants con los mutantes y sus poderes */
+    if (mutante.power === power){ /* mutante.power- de este mutante que tenemos en la mano( el que estamos justo recorriendo en el bucle), dame su información y mira exclusivamente lo que dice en su propiedad power
+                                  power- Este será el parámetro de la función cuando alguien la llame, si escribimos findMutantByPower(mutants, ' regeneration') entonces esta variable power guardará la palabra regeneration, que será nuestro objetivo ) 
+      Osea que esta linea comparará el poder del mutante que estamos revisando en ese momento en el bucle, con el poder general que nos han pedido buscar */
+
+      //Si el poder del mutante coincide:
+
+       nombresEncontrados += mutante.name +" "; /* Si el poder del mutante coincide sumamos el nombre a nuestra lista y le metemos un espacio para que no se amontone si hay más nombres*/
+
+       cantidadEncontrados += 1 /* Y sumamos 1 a nuestra cuenta de mutantes encontrados*/
+
+    }
+  }
+
+  /* Una vez terminamos el bucle, comprobamos si el contador subió o se quedó a 0 ( si encontramos alguno y el número)*/
+  if (cantidadEncontrados > 0){
+
+    return `Hemos encontrado mutantes con el poder de ${power}: Tenemos ${cantidadEncontrados}, concretamente ${nombresEncontrados}`;    
+  
+  }else{ //Aqui si sigue en 0, no hemos encontrado a nadie
+
+    return `No hemos encontrado mutantes con el poder de ${power}`;
+
+
+
+  }
+
+
+}
+
+
+/* Ahora verificamos que funciona, primero vamos a buscar magnetismo, que si esta en la lista*/
+
+const buscarMagnetismo = findMutantByPower(mutants, 'magnetism');
+console.log(buscarMagnetismo);
+
+/* Nos devuelve este mensaje, que es correcto con magneto, todo ok
+Hemos encontrado mutantes con el poder de magnetism: Tenemos 1, concretamente Magneto */
+
+
+/* Ahora verificamos que funciona, buscando magia del caos , que  no esta en la lista*/
+const buscarMagiaDelCaos = findMutantByPower(mutants, 'chaos magic');
+console.log(buscarMagiaDelCaos);
+
+
+/* Nos devuelve este mensaje, que es correcto, todo ok
+No hemos encontrado mutantes con el poder de chaos magic  */
+
+
+/* También podriamos resolver este ejercicio con .filter() lo intente con find(), pero pasa lo mismo que usando el array, se detiene y no nos serviría para este caso, find devuelve un solo elemento, el primero que encuentra*/
+
+/* El método filter nunca se detiene, revisa la lista hasta el final y nos mete en  un array nuevo a todos los que coinciden*/ 
+
+function findMutantByPower2(mutants, power) {
+  
+  /* Usamos .filter() para quedarnos solo con los mutantes que tienen ese poder, nos devuelve un array más pequeño (ej: solo los que tienen magnetismo*/
+  const mutantesFiltrados2 = mutants.filter(mutante => mutante.power === power);
+
+    if (mutantesFiltrados2.length > 0) { /* Si el array filtrado tiene a alguien,longitud mayor a 0*/
+    
+       let nombresEncontrados2 = ""; /* creamos acumulador de texto y lo iniciamos vacio*/
+
+       /* aqui no hace falta crear la variable de cantidadEncontrados porque con hacer el length del array filtrado ya lo tendriamos */
+    
+   
+    for (const mutante of mutantesFiltrados2) { /*recorremos solo el array nuevo de mutantes filtrados*/
+        nombresEncontrados2 += mutante.name + " ";
+    }
+    
+    return  `Hemos encontrado mutantes con el poder de ${power}: Tenemos ${mutantesFiltrados2.length}, concretamente ${nombresEncontrados2}`;
+    
+  } else { /* Si el array está vacio*/
+    
+    return `No hemos encontrado mutantes con el poder de ${power}`;
+  }
+}
+
+
+/* Ahora verificamos que funciona, primero vamos a buscar magnetismo, que si esta en la lista*/
+
+const buscarMagnetismo2 = findMutantByPower2(mutants, 'magnetism');
+console.log(buscarMagnetismo2);
+
+/* Nos devuelve este mensaje, que es correcto con magneto, todo ok
+Hemos encontrado mutantes con el poder de magnetism: Tenemos 1, concretamente Magneto */
+
+
+/* Ahora verificamos que funciona, buscando magia del caos , que  no esta en la lista*/
+const buscarMagiaDelCaos2 = findMutantByPower2(mutants, 'chaos magic');
+console.log(buscarMagiaDelCaos2);
+
+
+/* Nos devuelve este mensaje, que es correcto, todo ok
+No hemos encontrado mutantes con el poder de chaos magic  */

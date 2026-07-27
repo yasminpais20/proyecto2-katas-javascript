@@ -1,0 +1,69 @@
+/*Ejercicio 23
+Usa un bucle para crear 3 arrays de películas filtrados por categorías.
+Pelicula pequeña -> menos de 100 minutos, película mediana -> más de 100 minutos y menos de 200 y pelicula grande -> más de 200 minutos.
+Imprime cada array por consola */
+
+const movies = [
+  { name: "Titan A.E.", durationInMinutes: 130 },
+  { name: "Nightmare before Christmas", durationInMinutes: 225 },
+  { name: "Inception", durationInMinutes: 165 },
+  { name: "The Lord of the Rings", durationInMinutes: 967 },
+  { name: "Star Wars: A New Hope", durationInMinutes: 214 },
+  { name: "Terminator", durationInMinutes: 140 },
+  { name: "Spirited Away", durationInMinutes: 80 },
+  { name: "The Matrix", durationInMinutes: 136 },
+  { name: "Amélie", durationInMinutes: 110 },
+  { name: "Eternal Sunshine of the Spotless Mind", durationInMinutes: 108 },
+];
+
+
+/*Creamos tres arrays vacíos para cada categoría de pelicula*/
+
+const peliculaPequeña = [];
+const peliculaMediana = [];
+const peliculaGrande = [];
+
+for (const movie of movies){ // Con esto recorremos el array de peliculas
+
+    if(movie.durationInMinutes < 100) { // con un condicional si dura menos de 100 min lo metemos en peliculaPequña, ojo por el encunciado 100 min exactos no quedaría en nigun grupo*/
+
+        peliculaPequeña.push(movie); //Con un push lo metemos en la lista de peliculas pequeñas( el array)
+    
+    }else if(movie.durationInMinutes > 100 && movie.durationInMinutes <200){ /* Con otra rama del condicional contemplamos las peliculas que duren mas de 100 min y menos de 200 y lo unimos comn un and && ya que de unirlo con un or nos cogeria cuando una de las dos fuese verdad y nos daría mal el resultado */
+
+        peliculaMediana.push(movie);//Con un push lo metemos en la lista de peliculas medianas( el array)
+    
+    }else if (movie.durationInMinutes > 200){  // AQui las mayores de 200, 200 así tampoco estaria incluido en ningun intervalo, al igual que 100
+
+        peliculaGrande.push(movie)
+    }
+
+}
+
+
+//Imprimimos los arrays que nos pide el enunciado:
+
+console.log("Peliculas pequeñas:", peliculaPequeña);
+console.log("Peliculas medianas:", peliculaMediana);
+console.log("Peliculas grandes:", peliculaGrande);
+
+/* Que nos da como resultado
+
+Peliculas pequeñas: [ { name: 'Spirited Away', durationInMinutes: 80 } ]
+Peliculas medianas: [
+  { name: 'Titan A.E.', durationInMinutes: 130 },
+  { name: 'Inception', durationInMinutes: 165 },
+  { name: 'Terminator', durationInMinutes: 140 },
+  { name: 'The Matrix', durationInMinutes: 136 },
+  { name: 'Amélie', durationInMinutes: 110 },
+  {
+    name: 'Eternal Sunshine of the Spotless Mind',
+    durationInMinutes: 108
+  }
+]
+Peliculas grandes: [
+  { name: 'Nightmare before Christmas', durationInMinutes: 225 },
+  { name: 'The Lord of the Rings', durationInMinutes: 967 },
+  { name: 'Star Wars: A New Hope', durationInMinutes: 214 }
+]
+]*/

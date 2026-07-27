@@ -1,0 +1,73 @@
+/*Ejercicio 7
+
+Completa esta función para que, al recibir dos números por argumento, te devuelva por consola el más alto de los dos.*/
+
+function greaterNumber(numberOne, numberTwo) { /*Hacemos un condicional if else que valore si el numero1 es mayor al dos y en caso afirmativo nos devuelva el numero1 y un else para que si esta condición no se cumple nos devuelva el numero2 */
+  if (numberOne>numberTwo) {
+    console.log(numberOne);
+   } else{
+    console.log(numberTwo);
+   }
+}
+//Ahora le asignamos valores a la función para ver si trabaja correctamente
+
+ greaterNumber(9,4); // Nos devuelve el 9(numberOne) que es el mayor valor, ok
+
+ greaterNumber(3,8);// Nos devuelve el 8 (numberTw0) que es el mayor valor, ok
+
+
+ greaterNumber(3.8,4.8);// Nos devuelve el 4.8 (numberTw0) que es el mayor valor, ok
+
+ greaterNumber(9,9); /* Si son iguales nos devuelve el valor 9, que tecnicamente es correcto porque al no entrar por la rama del if, sale por la del else y nos devuelve el valor del (numberTw0), pero nos nos daría ningún aviso. Reescribimos el bucle para que nos lo avise*/
+
+ /*Hacemos un nuevo Bucle que detecte el caso en el que los dos números dados sean iguales, usaremos el condicional if...else if...else otra extensión del condicional del cond if que se utiliza para evaluar varias condiciones de manera secuencial */
+ function greaterNumber2(numb1, numb2){
+
+  if(numb1>numb2){
+    console.log(`El número más alto es el numb1 ${numb1}`);
+  }else if(numb1<numb2){
+    console.log(`El número más alto es el numb2 ${numb2}`);
+  }else{
+        console.log(`Los números son iguales, el número es ${numb2}`);
+  }
+
+  }
+ 
+  //Ahora le asignamos valores a la función para ver si trabaja correctamente
+
+ greaterNumber2(9,4); // Nos devuelve el 9(numb1) que es el mayor valor, ok
+
+ greaterNumber2(3,8);// Nos devuelve el 8 (numb2) que es el mayor valor, ok
+
+
+ greaterNumber2(3.8,4.8);// Nos devuelve el 4.8 (numb2) que es el mayor valor, ok
+
+ greaterNumber2(9,9); /* Si son iguales ahora con este nuevo bucle si nos avisa y nos da el valor */
+
+
+/* Una manera mucho más corta sería usando el método Math.max(n,m...) que nos retorna el número más grande de una lista de argumentos, pero este no contemplaría señalar el caso de que sean iguales, aunque si nos devolvería el caso correcto */
+
+function greaterNumber3(numb1, numb2) {
+  const mayor = Math.max(numb1, numb2);
+  console.log(`El número más alto es ${mayor}`);
+}
+
+greaterNumber3(9, 4);   // Nos devuelve el 9(numb1) que es el mayor valor, ok
+
+greaterNumber3(3, 8);   // Nos devuelve el 8 (numb2) que es el mayor valor, ok
+greaterNumber3(9, 9);   // Si son iguales nos devuelve el valor 9, ok
+
+/* Más adelante con los operadores ternarios también se podria hacer así, estos son como un condicional comprimido if else*/
+
+function greaterNumber4(numb1, numb2) {
+  
+  numb1 == numb2 
+    ? console.log(`Los números son iguales, el número es ${numb1}`) // Este ? representa lo que hacemos si la condición se cumple
+    : console.log(`El número más alto es ${Math.max(numb1, numb2)}`); /* Este : si la condición no se cumple y qeu aqui usamos de nuevo el método Math.max(), así imprimirá el mayor número*/
+
+}
+
+greaterNumber4(9, 4);   // Nos devuelve el 9(numb1) que es el mayor valor, ok
+
+greaterNumber4(3, 8);   // Nos devuelve el 8 (numb2) que es el mayor valor, ok
+greaterNumber4(9, 9);   // Si son iguales nos devuelve el valor 9 y en este caso si nos indica que son iguales 

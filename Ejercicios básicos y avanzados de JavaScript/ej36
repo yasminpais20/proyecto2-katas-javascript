@@ -1,0 +1,56 @@
+/* Ejercicio 36
+
+Crea una función que, dada una lista de actores con su año de nacimiento, calcule su edad actual y retorne un nuevo array con los nombres de los actores y sus edades.
+Averigua como hallar el año actual en tus cálculos.*/
+const actors = [
+  { name: 'Leonardo DiCaprio', born: 1974 },
+  { name: 'Tom Hanks', born: 1956 },
+  { name: 'Meryl Streep', born: 1949 },
+  { name: 'Brad Pitt', born: 1963 },
+  { name: 'Johnny Depp', born: 1963 },
+  { name: 'Scarlett Johansson', born: 1984 },
+  { name: 'Jennifer Lawrence', born: 1990 },
+  { name: 'Denzel Washington', born: 1954 },
+  { name: 'Morgan Freeman', born: 1937 },
+  { name: 'Cate Blanchett', born: 1969 }
+];
+
+function calculateActorsAges(actors) {
+ 
+ const añoActual = 2026; /*metemos el año actual en una variable, como es que no va a variar en un plazo breve de tiempo lo metemos  en un const*/
+
+ const actoresConEdad = [];/* creamos un array vacio para ir guardando nuestros resultados*/
+
+ for (const actor of actors){ /* recorremos el array de actores */
+    
+    const edadCalculada = añoActual - actor.born /* calculamos la edad actual del actor que estamos recorriendo en ese moment restando el año actual, que previamente hemos metido en una variable, a su año de nacimiento al que accedemos entrando en el array en su edad con actorn.born*/ 
+    actoresConEdad.push({ /* una vez calculada la edad  y puesta en la contante edadCalculada, creamos un nuevo objeto con el nombre del actor y la edad que acabamos de calcular dentro del array que antes estaba vacío, actoresConEdad y con el push lo metemos en el array actoresConEdad nota:ojo con no meterle un punto y coma detras del push o te deja el array vacio, ya que entiende que la instruccion termina alli*/
+    name: actor.name,
+    age: edadCalculada
+    });
+
+ }
+
+
+return actoresConEdad; /* y con el bucle ya finalizado devolvemos el array que creamos al principo con los objetos nuevos que le hemos metido con el push*/
+
+}
+
+const edadesActores = calculateActorsAges(actors); /* aqui estamos llamando a la función pasandole la variable actors(la lista de actores con su fecha de nacimiento) el return nos devuelve tras entrar en la función, hacer el bucle, calcular las restas  rellenar el nuevo  array con el nuevo objeto y nos devuelve finalmente actoresConEdad*/
+console.log(edadesActores);
+
+/* esto nos devuelve el array que contiene el objeto con el nombre y la edad del actor asi que todo ok
+
+[
+  { name: 'Leonardo DiCaprio', age: 52 },
+  { name: 'Tom Hanks', age: 70 },
+  { name: 'Meryl Streep', age: 77 },
+  { name: 'Brad Pitt', age: 63 },
+  { name: 'Johnny Depp', age: 63 },
+  { name: 'Scarlett Johansson', age: 42 },
+  { name: 'Jennifer Lawrence', age: 36 },
+  { name: 'Denzel Washington', age: 72 },
+  { name: 'Morgan Freeman', age: 89 },
+  { name: 'Cate Blanchett', age: 57 }
+]
+*/

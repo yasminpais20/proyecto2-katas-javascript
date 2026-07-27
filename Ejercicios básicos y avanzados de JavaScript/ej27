@@ -1,0 +1,31 @@
+/*Ejercicio 27
+
+Utiliza un bucle para encontrar la serie de dibujos animados más antigua en el array y guarda su nombre en una variable.
+Imprime el nombre por consola.*/
+
+const cartoons = [
+  { name: 'Bugs Bunny', debut: 1938 },
+  { name: 'SpongeBob SquarePants', debut: 1999 },
+  { name: 'Tom and Jerry', debut: 1940 },
+  { name: 'Mickey Mouse', debut: 1928 },
+  { name: 'Scooby-Doo', debut: 1969 },
+  { name: 'The Flintstones', debut: 1960 },
+  { name: 'Batman: The Animated Series', debut: 1992 },
+  { name: 'The Simpsons', debut: 1989 },
+  { name: 'Pokémon', debut: 1997 },
+  { name: "Dexter's Laboratory", debut: 1996 }
+];
+
+
+let dibujoMasAntiguo = cartoons[0]; /* ojo, no iniciar esto en 0, ya qie si lo hiciesemos así al comparar no nos entraría ninguno, en principio vamos a suponer que el primer elemento de la la lista bugs bunny es el más antiguo, lo guardamos en una variable del porque suponemos que lo van a superar los siguientes*/
+
+for(const cartoon of cartoons){ // recorremos toda la lista de los dibujos animados
+  if(cartoon.debut<dibujoMasAntiguo.debut){ /* si es menor tendremos un nuevo dibujo más antiguo y pondremos ese valor como dibujoMasAntiguo*/
+   dibujoMasAntiguo = cartoon;
+  }
+}
+
+const dibujoMasAntiguoNombre = dibujoMasAntiguo.name; /* En el enunciado nos pide que guardemos esta pelicula en una variable y lo guardamos en un const ya que una vez calculada la más antigua esta no debería de variar*/
+
+console.log(dibujoMasAntiguoNombre);
+ /* y nos da Mickey Mouse, todo ok */

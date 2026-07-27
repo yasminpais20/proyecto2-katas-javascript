@@ -1,0 +1,43 @@
+/*Ejercicio 10
+
+Calcular un promedio es una tarea extremadamente común, así que prueba a implementar esa funcionalidad en la siguiente función.
+Puedes usar este array para probarla:*/
+
+const numbers = [12, 21, 38, 5, 45, 37, 6];
+function average(numberList) {
+  
+ let sumaTotal = 0;
+
+ for (const numero of numberList){
+
+    sumaTotal+=numero;
+ }
+
+ const media=(sumaTotal/numberList.length);/* El procedimiento que sigo es idéntico al ejercicio anterior solo que tras determinar la suma la divido entre el numero de componentes que tiene el array con length,  esto el promedio por definición, para declarar media uso const, ya que está ya fuera del bucle así que solo la vamos a declarar una vez sera global además al estar fuera del bucle
+ 
+ 
+ aqui es importante dividir entre la numberList.length y no number a secas, el resultado nos daría igual, porque tengo numbers fuera también  pero si lo quiero reciclar es mejor así*/
+
+return media;
+
+}
+
+const resultado = average(numbers);
+
+console.log(`La media total es ${resultado}`);
+
+//Como en el ejemplo anterior podemos usar reduce()
+
+function average2(numberList2){
+
+    const sumaTotal2 = numberList2.reduce((acumulador,elemento)=> acumulador + elemento, 0); /* La sumaTotal 2 la declaramos como const porque cuando reduce() calcule su valor lo guarda y este ya no se va a volver a reasignar */
+
+    return sumaTotal2 /numberList2.length; //Retornamos la división de la suma entre la extensión del array, que es la media
+
+}
+
+
+const resultado2 = average2(numbers);
+
+console.log(`La media total es ${resultado2}`)
+

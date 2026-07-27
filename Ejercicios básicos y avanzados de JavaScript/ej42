@@ -1,0 +1,37 @@
+/*Ejercicio 42
+
+Crea una función llamada swap que reciba un array y dos parametros que sean indices del array.
+La función deberá intercambiar la posición de los valores de los indices que hayamos enviado como parametro. Es decir, intercambiar el lugar de un elemento por otro dentro del array.
+Retorna el array resultante.
+*/
+const fantasticFour = [
+  "La antorcha humana",
+  "Mr. Fantástico",
+  "La mujer invisible",
+  "La cosa",
+];
+
+function swap (array, index1, index2){
+    const temp = array[index1]; /* guardamos el valor del primer indice en una constante para no perderlo cuando lo sobrescribamos*/
+    
+    array[index1] = array[index2]; /* Con esto metemos el valor del indice 2 en el hueco del indice 1, como lo guardamos previamente en la constante temp no perdemos el valor del index1 y ahora mismo el array tendría el mismo valor repetido en las dos posiciones*/
+
+    array[index2] = temp; /* aqui recuperamos el valor original del indice 1 que guardamos en la constante temp al principio y lo metemos en el huevo del indice 2*/
+
+    return array; /* devolvemos el array con los valores modificados ( las posiciones)*/
+}
+
+
+// PRUEBAS
+console.log(fantasticFour);/* El array tal como nos lo dan */ 
+// ["La antorcha humana", "Mr. Fantástico", "La mujer invisible", "La cosa"]
+
+// intercambiamos pos 0 y 3 */
+// cambiamos  antorcha humana(0) por la cosa (3)
+console.log(swap(fantasticFour, 0, 3)); 
+// nos dará: ["La cosa", "Mr. Fantástico", "La mujer invisible", "La antorcha humana"]
+
+// itercambiamos pos 1 y 2 
+//  cambiar mr fantástico (1) por mujer invisible (2)
+console.log(swap(fantasticFour, 1, 2));
+//nos dará: ["La cosa", "La mujer invisible", "Mr. Fantástico", "La antorcha humana"]

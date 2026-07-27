@@ -1,0 +1,51 @@
+//Ejercicio 4
+//Dado el siguiente array:
+const aldeanos = ["Fibrilio", "Narciso", "Vacarena", "Tendo", "Nendo"];
+//4.1 - Saca a "Tendo" por consola atacando su posición.
+//4.2 - Coloca en el último lugar de este array a "Cervasio".
+//4.3 - Cambia el primer elemento de este array por "Bambina".
+//4.4 - Dale la vuelta a este array.
+//4.5 - Cambia a "Narciso" por "Canela" haciendo uso de un método de array.
+//4.6 - Imprime por consola el último elemento de este array sin atacar a la posición explicitamente
+// Pista: puedes usar el método length con algo más para ello.
+
+//4.1
+console.log(aldeanos[3]); //Tendo
+
+
+//4.2 
+aldeanos.push("Cervasio"); //Con este método empujamos un elemento al final, en este caso Cervasio
+console.log(aldeanos);
+console.log(aldeanos[5]);
+
+// El array ahora es: ["Fibrilio", "Narciso", "Vacarena", "Tendo", "Nendo", "Cervasio"]
+
+//4.3 
+aldeanos[0]="Bambina"; 
+
+console.log(aldeanos[0]); 
+
+// El array ahora es: ["Bambina", "Narciso", "Vacarena", "Tendo", "Nendo", "Cervasio"]
+
+//4.4 
+
+aldeanos.reverse(); // Este método invierte el orden de los elemento de un array
+console.log(aldeanos);
+
+// El array ahora es: [ 'Cervasio', 'Nendo', 'Tendo', 'Vacarena', 'Narciso', 'Bambina' ]
+
+//4.5 
+
+aldeanos.splice(4, 1, "Canela"); //El método splice() sirve para cambiar el contenido eliminando y agregando   
+console.log(aldeanos);           // splice(posición, cantidad a eliminar, nuevo elemento);
+
+/* Esta versión funciona porque sé la posición de Narciso, en caso de no saberla usar .indexOf() que nos devolverá el primer índice en el que se puede encontrar un elemento dado en el array o -1 si no está presente
+
+cont posicionNarciso = aldeanos.indexOf("Narciso");
+aldeanos.splice(posicionNarciso, 1, "Canela")  */
+
+// El array ahora es:[ 'Cervasio', 'Nendo', 'Tendo', 'Vacarena', 'Canela', 'Bambina' ]
+
+//4.6
+
+console.log(aldeanos[aldeanos.length-1]);// Como la longitud del array es siempre 1 número mayor que la última posición porque empezamos a contar desde 0, si le restamos 1 nos dará la última posición  

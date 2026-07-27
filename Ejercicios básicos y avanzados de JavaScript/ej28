@@ -1,0 +1,57 @@
+/*Ejercicio 28
+Dada una lista de álbumes de música, utiliza un bucle para sumar todas las duraciones solo de los álbumes de rock y luego imprime el total de estas duraciones por consola.
+*/
+const albums = [
+  { title: 'Led Zeppelin IV', genre: 'Rock', duration: 42.19 },
+  { title: 'The Dark Side of the Moon', genre: 'Rock', duration: 42.49 },
+  { title: 'Back in Black', genre: 'Rock', duration: 42.11 },
+  { title: 'Hotel California', genre: 'Rock', duration: 43.08 },
+  { title: 'Abbey Road', genre: 'Rock', duration: 47.23 },
+  { title: 'Thriller', genre: 'Pop', duration: 42.19 },
+  { title: 'A Night at the Opera', genre: 'Rock', duration: 43.08 },
+  { title: 'The Wall', genre: 'Rock', duration: 81.00 },
+  { title: 'Born to Run', genre: 'Rock', duration: 39.26 },
+  { title: 'The Joshua Tree', genre: 'Rock', duration: 50.11 }
+];
+
+let duracionDelRock = 0; /* Creamos una variable con let ya que va a ir aumentando y esta duracionDelRock actuará como acumulador numérico y lo inciaremos en 0*/
+
+for (const album of albums){ /*recorremos la lista de albunes*/
+
+ if (album.genre ==='Rock'){/* Aqui metemos un condicional de que el genero sea estrictamente igual a rock*/
+
+    duracionDelRock += album.duration /* con esta linea si se cumple lo del rock sumaremos la duracion de este album al total,   
+    duracionDelRock = duracionDelRock + album.duration la linea de arriba y la de abajo son equivalentes*/
+
+}
+
+
+}
+
+console.log("Duración total del Rock:", duracionDelRock);
+
+/* nos da como resultado
+Duración total del Rock: 430.55
+
+*/
+
+/*también podriamos usar filter() para descartar  pop y luego usar el reduce  */
+
+// 1 Filtramos solo el Rock
+// 2 Reducimos todo el array a un solo número sumando las duraciones
+const duracionRock2 = albums
+  .filter(album => album.genre === 'Rock') /*( este "filtra",en la entrada tenemos el array original con las 10 opciones, album coge cada disco uno por uno, luego les pregunta la condicion de que si su género es estrictamente igual a Rock, en esto el disco de pop no pasa porque ni cumple la condicion y a la salida tendremos un array temporak con 9 discos de rock, señalar que este array no se guiarda en ninguna variable, si no que va directamente al siguiente método*/
+  
+  
+  .reduce((acumulador, album) => acumulador + album.duration, 0); /* Aqui cogemos ese array de 9 discos que procede del anterior método y lo reducimos a un solo numero*/
+  /* El 0 que tenemos al final es el valor inicial, para empezar a contar desde 0 el reduce() es un bucle que da vueltas, pero precisa manejar 2 cosas en cada vuelta, el acumulador que es la memoria que empieza valiendo 0 y el allbum que es el disco físico que tenemos en la mano en esa vuelta exacta*/ 
+                                                                   
+ /* => acumulador + album.duration; esta es la instrucción que se ejecuta en cada vuelta del bucle que viene aer que cojamos lo que haya en el acumulador y le sumemos la duracion del disco que tenemos en la mano */
+
+ /* Cuando termina el reduce se guarda el numero final en la comnstante duracionRock2*()*/
+
+
+
+   console.log(duracionRock2);
+
+   /*Da 430.55, todo ok */

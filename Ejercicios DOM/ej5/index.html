@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Metaetiquetas básicas y SEO -->
+    <meta name="description" content="Lista dinámica de álbumes clásicos de metal ">
+    <meta name="author" content="Yasmin Pais">
+    <meta name="keywords" content="metal,thrash  metal, discos, javascript, dom, desarrollo web">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="img/logo.png" type="image/png">
+
+    <title>Discos Clásicos</title>
+
+    <!--  Fuentes: preconexión y carga desde el head, da mejor rendimiento que importar las fuentes en el CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Heavy Metal Classics</h1>
+    </header>
+    
+    <main>
+        <section class="container">
+            <h2>Álbumes imprescindibles</h2>
+            <p>Aquí tienes nuestra lista.</p>
+            
+            <!-- Contenedor para inyectar el JS -->
+            <div id="album-container"></div>
+        </section>
+    </main>
+
+</body>
+</html>

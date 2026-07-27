@@ -1,0 +1,49 @@
+/*Ejercicio 34
+
+Escribe una función que calcule el promedio de duración de una lista de películas.
+Recibe un array de películas, cada una con su duración en minutos.
+La función debe devolver el promedio de duración de todas las películas.*/
+
+const peliculas = [
+  { title: 'Inception', duration: 148 },
+  { title: 'The Dark Knight', duration: 152 },
+  { title: 'Interstellar', duration: 169 },
+  { title: 'Dunkirk', duration: 106 },
+  { title: 'The Prestige', duration: 130 },
+  { title: 'Memento', duration: 113 },
+  { title: 'Batman Begins', duration: 140 },
+  { title: 'The Dark Knight Rises', duration: 164 },
+  { title: 'Tenet', duration: 150 },
+  { title: 'Insomnia', duration: 118 }
+];
+
+function duracionPromedioPeliculas(peliculas) {
+
+  let duracionTotal = 0; /* Creamos un acumulador numérico que parta de cero, como va a ir aumentando usamos let */
+
+  for (const pelicula of peliculas){ /* recorremos todas las películas de la lista*/
+    
+    duracionTotal += pelicula.duration; /* con esto sumamos la duración de la película actual(la que tenemos en la mano, que estamos recorriendo en ese momento) a nuestro acumulador total*/
+    //duracionTotal += pelicula.duration es lo mismo que duracionTotal = durationTotal + pelicula.duration
+   
+  }
+
+  // Una vez terminado el bucle(recorrimos todas las peliculas), calculamos el promedio
+
+  const promedio = duracionTotal/ peliculas.length; /* Dividimos el total entre la cantidad de peliculas(peliculas.length)*/
+
+  return promedio /* Devolvemos el resultado fuera de la función */
+}
+
+const promedio = duracionPromedioPeliculas(peliculas); /* Podemos llamarle igual a la de let promedio, ya que esa es local y la que estamos nombrando aqui es global*/
+
+console.log(`El promedio de duración de las peliculas de la lista es de ${promedio} minutos`);
+
+/* Nos da que El promedio de duración de las peliculas de la lista es de 139 minutos*/
+
+
+  
+
+
+
+
