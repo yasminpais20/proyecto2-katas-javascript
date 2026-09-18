@@ -18,17 +18,17 @@ teniendo dos variables c = 10 y m = 5. */
 //3.1
 
 let resultado1 = 10 * 5; // Hay que declarar las variables con  siempre, ojo
-console.log(`El primer resultado es ${Resultado1}`);
+console.log(`El primer resultado es ${resultado1}`);
 
 //3.2
 
 let resultado2 = 10 / 2;
-console.log(`El segundo resultado es ${Resultado2}`);
+console.log(`El segundo resultado es ${resultado2}`);
 
 //3.3
 
 let resultado3 = 15 % 9;
-console.log(`El tercer resultado es ${Resultado3}`);
+console.log(`El tercer resultado es ${resultado3}`);
 
 //3.4
 
